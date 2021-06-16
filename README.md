@@ -18,8 +18,8 @@ Make the model applicable under any resolution input
 
 Provide models with lower calculation consumption
 
-## Report bad cases
-Please take a screenshot of your original video clip and share it with me via Github issue and Google Drive. I will add it to our test set so that it is likely to be improved in later versions. It will be very helpful to attach a screenshot of the model's effect in the issue.
+## Report Bad Cases
+Please take a screenshot of your original video clip and share it with us via Github issue and Google Drive. We may add it to our test set so that it is likely to be improved in later versions. It will be very helpful to attach a screenshot of the model's effect in the issue.
 
 ## Usage
 
