@@ -18,6 +18,48 @@ Make the model applicable under any resolution input
 
 Provide models with lower calculation consumption
 
+## Usage
+
+### Installation
+
+```
+git clone git@github.com:hzwer/Pratical-RIFE.git
+cd Pratical-RIFE
+pip3 install -r requirements.txt
+```
+### Run
+
+**Video Frame Interpolation**
+
+You can use our [demo video](https://drive.google.com/file/d/1i3xlKb7ax7Y70khcTcuePi6E7crO_dFc/view?usp=sharing) or your own video. 
+```
+python3 inference_video.py --exp=1 --video=video.mp4 
+```
+(generate video_2X_xxfps.mp4)
+```
+python3 inference_video.py --exp=2 --video=video.mp4
+```
+(for 4X interpolation)
+```
+python3 inference_video.py --exp=1 --video=video.mp4 --scale=0.5
+```
+(If your video has very high resolution such as 4K, we recommend set --scale=0.5 (default 1.0). If you generate disordered pattern on your videos, try set --scale=2.0. This parameter control the process resolution for optical flow model.)
+```
+python3 inference_video.py --exp=2 --img=input/
+```
+(to read video from pngs, like input/0.png ... input/612.png, ensure that the png names are numbers)
+```
+python3 inference_video.py --exp=2 --video=video.mp4 --fps=60
+```
+(add slomo effect, the audio will be removed)
+```
+python3 inference_video.py --video=video.mp4 --montage --png
+```
+(if you want to montage the origin video, skip static frames and save the png format output)
+
+The warning info, 'Warning: Your video has *** static frames, it may change the duration of the generated video.' means that your video has changed the frame rate by adding static frames, it is common if you have processed 25FPS video to 30FPS.
+
+
 ## Citation
 
 ```
