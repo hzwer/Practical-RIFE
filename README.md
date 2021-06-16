@@ -24,7 +24,7 @@ Please take a screenshot of your original video clip and share it with me via Gi
 ## Usage
 
 ### Model List
-v3.5 [Google Drive](https://drive.google.com/file/d/1YEi5KAdo0e6XnCTcbzOGCNtU33Lc2yO2/view?usp=sharing) [百度网盘](https://pan.baidu.com/s/1FqMcoIbYDV-Oq_ogcuuHjQ) 链接:https://pan.baidu.com/s/1FqMcoIbYDV-Oq_ogcuuHjQ 密码:1rb7
+v3.5 | [Google Drive](https://drive.google.com/file/d/1YEi5KAdo0e6XnCTcbzOGCNtU33Lc2yO2/view?usp=sharing) | [百度网盘, 密码:1rb7](https://pan.baidu.com/s/1FqMcoIbYDV-Oq_ogcuuHjQ)
 
 ### Installation
 
