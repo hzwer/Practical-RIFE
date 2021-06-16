@@ -4,10 +4,10 @@ This project is based on [RIFE](https://github.com/hzwer/arXiv2020-RIFE). This p
 
 For business cooperation, please [contact my email](mailto:huangzhewei@megvii.com).
 
-# Model training
+## Model training
 Since we are in the research stage of engineering tricks, and our work and paper have not been authorized for patents nor published, we are sorry that we cannot provide users with training scripts. If you are interested in academic exploration, please refer to our academic research project [RIFE](https://github.com/hzwer/arXiv2020-RIFE). 
 
-# To-do List
+## To-do List
 Multi-frame input of the model
 
 Frame interpolation at any time location
