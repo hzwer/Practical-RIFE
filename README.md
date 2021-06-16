@@ -18,7 +18,13 @@ Make the model applicable under any resolution input
 
 Provide models with lower calculation consumption
 
+## Report bad cases
+Please take a screenshot of your original video clip and share it with me via Github issue and Google Drive. I will add it to our test set so that it is likely to be improved in later versions. It will be very helpful to attach a screenshot of the model's effect in the issue.
+
 ## Usage
+
+### Model List
+v3.5 [Google Drive](https://drive.google.com/file/d/1YEi5KAdo0e6XnCTcbzOGCNtU33Lc2yO2/view?usp=sharing) [百度网盘](https://pan.baidu.com/s/1FqMcoIbYDV-Oq_ogcuuHjQ) 链接:https://pan.baidu.com/s/1FqMcoIbYDV-Oq_ogcuuHjQ 密码:1rb7
 
 ### Installation
 
@@ -27,6 +33,7 @@ git clone git@github.com:hzwer/Pratical-RIFE.git
 cd Pratical-RIFE
 pip3 install -r requirements.txt
 ```
+Download a model from model list and put *.py and flownet.pkl on model/
 ### Run
 
 **Video Frame Interpolation**
@@ -52,10 +59,6 @@ python3 inference_video.py --exp=2 --img=input/
 python3 inference_video.py --exp=2 --video=video.mp4 --fps=60
 ```
 (add slomo effect, the audio will be removed)
-```
-python3 inference_video.py --video=video.mp4 --montage --png
-```
-(if you want to montage the origin video, skip static frames and save the png format output)
 
 The warning info, 'Warning: Your video has *** static frames, it may change the duration of the generated video.' means that your video has changed the frame rate by adding static frames, it is common if you have processed 25FPS video to 30FPS.
 
