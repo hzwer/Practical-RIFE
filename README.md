@@ -1,5 +1,5 @@
 # Pratical-RIFE
-This project is based on [RIFE](https://github.com/hzwer/arXiv2020-RIFE) and aims to make RIFE more practical for users by adding various features and design new models. We hope this part of work and our academic research are independent of each other to reduce development difficulty. This project is developed for engineers and developers. For users, we recommend the following applications:
+This project is based on [RIFE](https://github.com/hzwer/arXiv2020-RIFE) and aims to make RIFE more practical for users by adding various features and design new models. Because improving the PSNR index is not compatible with subjective effects, we hope this part of work and our academic research are independent of each other. To reduce development difficulty, this project is for engineers and developers. For users, we recommend the following softwares:
 [Squirrel-RIFE(中文软件)](https://github.com/YiWeiHuang-stack/Squirrel-Video-Frame-Interpolation) | [Waifu2x-Extension-GUI](https://github.com/AaronFeng753/Waifu2x-Extension-GUI) | [Flowframes](https://nmkd.itch.io/flowframes) | [RIFE-ncnn-vulkan](https://github.com/nihui/rife-ncnn-vulkan) | [RIFE-App(Paid)](https://grisk.itch.io/rife-app) | [Autodesk Flame](https://vimeo.com/505942142) | [SVP](https://www.svp-team.com/wiki/RIFE_AI_interpolation) |
 
 For business cooperation, please [contact my email](mailto:huangzhewei@megvii.com).
@@ -24,7 +24,7 @@ Make the model applicable under any resolution input
 Provide models with lower calculation consumption
 
 ## Report Bad Cases
-Please take a screenshot of your original video clip and share it with us via Github issue and Google Drive. We may add it to our test set so that it is likely to be improved in later versions. It will be beneficial to attach a screenshot of the model's effect on the issue.
+Please share your original video clip with us via Github issue and Google Drive. We may add it to our test set so that it is likely to be improved in later versions. It will be beneficial to attach a screenshot of the model's effect on the issue.
 
 ## Usage
 
