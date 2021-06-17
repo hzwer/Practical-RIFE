@@ -11,9 +11,7 @@ For business cooperation, please [contact my email](mailto:huangzhewei@megvii.co
 
 ## Usage
 ### Model List
-v3.7 | [Google Drive](https://drive.google.com/file/d/1NWI0keU9UT6B3JYKhY02MNee31X_HBZ5/view?usp=sharing) | [百度网盘, 密码:gs90](https://pan.baidu.com/s/1vZs5dujejEnwXKSE7pkxVQ)
-
-v3.6 | [Google Drive](https://drive.google.com/file/d/1APIzVeI-4ZZCEuIRE1m6WYfSCaOsi_7_/view?usp=sharing) | [百度网盘, 密码:hfk3](https://pan.baidu.com/s/1u6Q7-i4Hu4Vx9_5BJibPPA)
+v3.8 | [Google Drive](https://drive.google.com/file/d/1O5KfS3KzZCY3imeCr2LCsntLhutKuAqj/view?usp=sharing) | [百度网盘, 密码:kxr3](https://pan.baidu.com/s/1X-jpWBZWe-IQBoNAsxo2mA)
 
 v3.5 | [Google Drive](https://drive.google.com/file/d/1YEi5KAdo0e6XnCTcbzOGCNtU33Lc2yO2/view?usp=sharing) | [百度网盘, 密码:1rb7](https://pan.baidu.com/s/1FqMcoIbYDV-Oq_ogcuuHjQ)
 
