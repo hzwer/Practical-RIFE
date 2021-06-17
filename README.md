@@ -12,7 +12,7 @@ For business cooperation, please [contact my email](mailto:huangzhewei@megvii.co
 ## Usage
 
 ### Model List
-v3.6 | [Google Drive](https://drive.google.com/file/d/1APIzVeI-4ZZCEuIRE1m6WYfSCaOsi_7_/view?usp=sharing) | [百度网盘, 密码:75nd](https://pan.baidu.com/s/1L3LugphpmWIHE1EVkZm-1Q)
+v3.6 | [Google Drive](https://drive.google.com/file/d/1APIzVeI-4ZZCEuIRE1m6WYfSCaOsi_7_/view?usp=sharing) | [百度网盘, 密码:hfk3](https://pan.baidu.com/s/1u6Q7-i4Hu4Vx9_5BJibPPA)
 
 v3.5 | [Google Drive](https://drive.google.com/file/d/1YEi5KAdo0e6XnCTcbzOGCNtU33Lc2yO2/view?usp=sharing) | [百度网盘, 密码:1rb7](https://pan.baidu.com/s/1FqMcoIbYDV-Oq_ogcuuHjQ)
 
