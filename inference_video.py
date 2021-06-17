@@ -179,7 +179,7 @@ def pad_image(img):
 if args.montage:
     left = w // 4
     w = w // 2
-tmp = max(32, int(32 / args.scale))
+tmp = max(64, int(64 / args.scale))
 ph = ((h - 1) // tmp + 1) * tmp
 pw = ((w - 1) // tmp + 1) * tmp
 padding = (0, pw - w, 0, ph - h)
