@@ -29,6 +29,8 @@ Please share your original video clip with us via Github issue and Google Drive.
 ## Usage
 
 ### Model List
+v3.6 | [Google Drive](https://drive.google.com/file/d/1APIzVeI-4ZZCEuIRE1m6WYfSCaOsi_7_/view?usp=sharing) | [百度网盘, 密码:75nd](https://pan.baidu.com/s/1L3LugphpmWIHE1EVkZm-1Q)
+
 v3.5 | [Google Drive](https://drive.google.com/file/d/1YEi5KAdo0e6XnCTcbzOGCNtU33Lc2yO2/view?usp=sharing) | [百度网盘, 密码:1rb7](https://pan.baidu.com/s/1FqMcoIbYDV-Oq_ogcuuHjQ)
 
 ### Installation
