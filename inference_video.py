@@ -9,7 +9,7 @@ import warnings
 import _thread
 import skvideo.io
 from queue import Queue, Empty
-from benchmark.pytorch_msssim import ssim_matlab
+from model.pytorch_msssim import ssim_matlab
 
 warnings.filterwarnings("ignore")
 
@@ -82,8 +82,11 @@ if torch.cuda.is_available():
     torch.backends.cudnn.benchmark = True
     if(args.fp16):
         torch.set_default_tensor_type(torch.cuda.HalfTensor)
-        
-from model.RIFE_HDv3 import Model
+
+try:
+    from train_log.RIFE_HDv3 import Model
+except:
+    print("Please download our model from model list")
 model = Model()
 model.load_model(args.modelDir, -1)
 print("Loaded v3.x HD model.")
