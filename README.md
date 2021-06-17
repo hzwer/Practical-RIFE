@@ -1,4 +1,4 @@
-# Pratical-RIFE
+# Practical-RIFE
 This project is based on [RIFE](https://github.com/hzwer/arXiv2020-RIFE) and aims to make RIFE more practical for users by adding various features and design new models. Because improving the PSNR index is not compatible with subjective effects, we hope this part of work and our academic research are independent of each other. To reduce development difficulty, this project is for engineers and developers. For users, we recommend the following softwares:
 [Squirrel-RIFE(中文软件)](https://github.com/YiWeiHuang-stack/Squirrel-Video-Frame-Interpolation) | [Waifu2x-Extension-GUI](https://github.com/AaronFeng753/Waifu2x-Extension-GUI) | [Flowframes](https://nmkd.itch.io/flowframes) | [RIFE-ncnn-vulkan](https://github.com/nihui/rife-ncnn-vulkan) | [RIFE-App(Paid)](https://grisk.itch.io/rife-app) | [Autodesk Flame](https://vimeo.com/505942142) | [SVP](https://www.svp-team.com/wiki/RIFE_AI_interpolation) |
 
@@ -34,11 +34,11 @@ v3.5 | [Google Drive](https://drive.google.com/file/d/1YEi5KAdo0e6XnCTcbzOGCNtU3
 ### Installation
 
 ```
-git clone git@github.com:hzwer/Pratical-RIFE.git
-cd Pratical-RIFE
+git clone git@github.com:hzwer/Practical-RIFE.git
+cd Practical-RIFE
 pip3 install -r requirements.txt
 ```
-Download a model from the model list and put *.py and flownet.pkl on model/
+Download a model from the model list and put *.py and flownet.pkl on train_log/
 ### Run
 
 **Video Frame Interpolation**
