@@ -9,23 +9,6 @@ For business cooperation, please [contact my email](mailto:huangzhewei@megvii.co
 ![Demo](./demo/I0_slomo_clipped.gif)
 ![Demo](./demo/I2_slomo_clipped.gif)
 
-## Model training
-Since we are in the research stage of engineering tricks, and our work and paper have not been authorized for patents nor published, we are sorry that we cannot provide users with training scripts. If you are interested in academic exploration, please refer to our academic research project [RIFE](https://github.com/hzwer/arXiv2020-RIFE). 
-
-## To-do List
-Multi-frame input of the model
-
-Frame interpolation at any time location
-
-Eliminate artifacts as much as possible
-
-Make the model applicable under any resolution input
-
-Provide models with lower calculation consumption
-
-## Report Bad Cases
-Please share your original video clip with us via Github issue and Google Drive. We may add it to our test set so that it is likely to be improved in later versions. It will be beneficial to attach a screenshot of the model's effect on the issue.
-
 ## Usage
 
 ### Model List
@@ -85,6 +68,23 @@ The warning info, 'Warning: Your video has *** static frames, it may change the 
 
 **MMD**
 [深邃黑暗の银鳕鱼 - 镜音铃](https://www.bilibili.com/video/BV1nU4y1W7RF?from=search&seid=151780224584608151) [fufu](https://www.bilibili.com/video/BV16K4y1Q7CM) [fufu.b](https://www.bilibili.com/video/BV1Xb4y1R7iT) | [Abism0 - 弱音](https://www.bilibili.com/video/BV1Wf4y147cP?from=search&seid=7774996509988438677) |
+
+## Report Bad Cases
+Please share your original video clip with us via Github issue and Google Drive. We may add it to our test set so that it is likely to be improved in later versions. It will be beneficial to attach a screenshot of the model's effect on the issue.
+
+## Model training
+Since we are in the research stage of engineering tricks, and our work and paper have not been authorized for patents nor published, we are sorry that we cannot provide users with training scripts. If you are interested in academic exploration, please refer to our academic research project [RIFE](https://github.com/hzwer/arXiv2020-RIFE). 
+
+## To-do List
+Multi-frame input of the model
+
+Frame interpolation at any time location
+
+Eliminate artifacts as much as possible
+
+Make the model applicable under any resolution input
+
+Provide models with lower calculation consumption
 
 ## Citation
 
