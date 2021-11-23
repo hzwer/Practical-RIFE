@@ -25,23 +25,23 @@ Download a model from the model list and put *.py and flownet.pkl on train_log/
 
 You can use our [demo video](https://drive.google.com/file/d/1i3xlKb7ax7Y70khcTcuePi6E7crO_dFc/view?usp=sharing) or your video. 
 ```
-python3 inference_video.py --exp=1 --video=video.mp4 
+python3 inference_video.py --multi=2 --video=video.mp4 
 ```
 (generate video_2X_xxfps.mp4)
 ```
-python3 inference_video.py --exp=2 --video=video.mp4
+python3 inference_video.py --multi=4 --video=video.mp4
 ```
 (for 4X interpolation)
 ```
-python3 inference_video.py --exp=1 --video=video.mp4 --scale=0.5
+python3 inference_video.py --multi=2 --video=video.mp4 --scale=0.5
 ```
 (If your video has high resolution, such as 4K, we recommend set --scale=0.5 (default 1.0))
 ```
-python3 inference_video.py --exp=2 --img=input/
+python3 inference_video.py ---multi=4 --img=input/
 ```
 (to read video from pngs, like input/0.png ... input/612.png, ensure that the png names are numbers)
 ```
-python3 inference_video.py --exp=2 --video=video.mp4 --fps=60
+python3 inference_video.py --multi=3 --video=video.mp4 --fps=60
 ```
 (add slomo effect, the audio will be removed)
 
