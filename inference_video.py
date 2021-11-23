@@ -90,6 +90,8 @@ try:
 except:
     print("Please download our model from model list")
 model = Model()
+if not hasattr(model, 'version'):
+    model.version = 0
 model.load_model(args.modelDir, -1)
 print("Loaded v3.x HD model.")
 model.eval()
@@ -151,26 +153,32 @@ def clear_write_buffer(user_args, write_buffer):
 def build_read_buffer(user_args, read_buffer, videogen):
     try:
         for frame in videogen:
-             if not user_args.img is None:
-                  frame = cv2.imread(os.path.join(user_args.img, frame))[:, :, ::-1].copy()
-             if user_args.montage:
-                  frame = frame[:, left: left + w]
-             read_buffer.put(frame)
+            if not user_args.img is None:
+                frame = cv2.imread(os.path.join(user_args.img, frame))[:, :, ::-1].copy()
+            if user_args.montage:
+                frame = frame[:, left: left + w]
+            read_buffer.put(frame)
     except:
         pass
     read_buffer.put(None)
 
-def make_inference(I0, I1, n):
+def make_inference(I0, I1, n):    
     global model
-    middle = model.inference(I0, I1, args.scale)
-    if n == 1:
-        return [middle]
-    first_half = make_inference(I0, middle, n=n//2)
-    second_half = make_inference(middle, I1, n=n//2)
-    if n%2:
-        return [*first_half, middle, *second_half]
+    if model.version >= 3.9:
+        res = []
+        for i in range(n):
+            res.append(model.inference(I0, I1, (i+1) * 1. / (n+1), args.scale))
+        return res
     else:
-        return [*first_half, *second_half]
+        middle = model.inference(I0, I1, args.scale)
+        if n == 1:
+            return [middle]
+        first_half = make_inference(I0, middle, n=n//2)
+        second_half = make_inference(middle, I1, n=n//2)
+        if n%2:
+            return [*first_half, middle, *second_half]
+        else:
+            return [*first_half, *second_half]
 
 def pad_image(img):
     if(args.fp16):
@@ -213,7 +221,8 @@ while True:
     ssim = ssim_matlab(I0_small[:, :3], I1_small[:, :3])
 
     break_flag = False
-    if ssim > 0.996:
+    if ssim > 0.999:
+        continue
         frame = read_buffer.get() # read a new frame
         if frame is None:
             break_flag = True
