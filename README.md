@@ -4,13 +4,9 @@ This project is based on [RIFE](https://github.com/hzwer/arXiv2020-RIFE) and aim
 
 For business cooperation, please [contact my email](mailto:huangzhewei@megvii.com).
 
-16X interpolation results from two input images: 
-
-![Demo](./demo/I0_slomo_clipped.gif)
-![Demo](./demo/I2_slomo_clipped.gif)
-
 ## Usage
 ### Model List
+v3.9 - 2021.11.23 | [Google Drive](https://drive.google.com/file/d/1iosmPTt2ayAdSMqnI1cxO_R1-Qhrranp/view?usp=sharing) | [百度网盘, 密码:u80g](https://pan.baidu.com/s/1mhEA8G34YyxvLbU6Z56QxQ) ||
 v3.8 - 2021.6.17 | [Google Drive](https://drive.google.com/file/d/1O5KfS3KzZCY3imeCr2LCsntLhutKuAqj/view?usp=sharing) | [百度网盘, 密码:kxr3](https://pan.baidu.com/s/1X-jpWBZWe-IQBoNAsxo2mA) || v3.5 - 2021.6.12 | [Google Drive](https://drive.google.com/file/d/1YEi5KAdo0e6XnCTcbzOGCNtU33Lc2yO2/view?usp=sharing) | [百度网盘, 密码:1rb7](https://pan.baidu.com/s/1FqMcoIbYDV-Oq_ogcuuHjQ)
 
 v3.1 - 2021.5.17 | [Google Drive](https://drive.google.com/file/d/1xn4R3TQyFhtMXN2pa3lRB8cd4E1zckQe/view?usp=sharing) | [百度网盘, 密码:64bz](https://pan.baidu.com/s/1W4p_Ni04HLI_jTy45sVodA) || v3.0 - 2021.5.15 | [Google Drive](https://drive.google.com/file/d/1JmwH8L3pdy49NroCVwracDW5UM43AAqd/view?usp=sharing) | [百度网盘, 密码:tgmd](https://pan.baidu.com/s/1_cC0sUdi6qx9tOkagddslw)
@@ -49,8 +45,6 @@ python3 inference_video.py --exp=2 --video=video.mp4 --fps=60
 ```
 (add slomo effect, the audio will be removed)
 
-The warning info, 'Warning: Your video has *** static frames, it may change the duration of the generated video.' means that your video has changed the frame rate by adding static frames. It is common if you have processed 25FPS video to 30FPS.
-
 ## Collection
 **2d Animation**
 [DAIN-App vs RIFE-App](https://www.youtube.com/watch?v=0OXzVGLRhK0) | [Chika Dance](https://www.youtube.com/watch?v=yjMYefRXikI) | [御坂大哥想让我表白 - 魔女之旅](https://www.bilibili.com/video/BV1r54y1Y7fn) | [ablyh - 超电磁炮](https://www.bilibili.com/video/BV1gK4y1Q7d9?from=search&seid=16584204362417247463) [超电磁炮.b](https://www.bilibili.com/video/BV1sp4y1p73K?from=search&seid=7774996509988438677) | [赫萝与罗伦斯的旅途 - 绫波丽](https://www.bilibili.com/video/BV1yz4y1m7iF) | [花儿不哭 - 乐正绫](https://www.bilibili.com/video/BV1cs411b7qL?from=search&seid=11977379973861203602) |
@@ -75,7 +69,7 @@ Since we are in the research stage of engineering tricks, and our work and paper
 ## To-do List
 Multi-frame input of the model
 
-Frame interpolation at any time location
+Frame interpolation at any time location (Done)
 
 Eliminate artifacts as much as possible
 
