@@ -67,7 +67,11 @@ parser.add_argument('--fps', dest='fps', type=int, default=None)
 parser.add_argument('--png', dest='png', action='store_true', help='whether to vid_out png format vid_outs')
 parser.add_argument('--ext', dest='ext', type=str, default='mp4', help='vid_out video extension')
 parser.add_argument('--exp', dest='exp', type=int, default=1)
+parser.add_argument('--multi', dest='multi', type=int, default=2)
+
 args = parser.parse_args()
+if args.exp != 1:
+    args.multi = (2 ** args.exp)
 assert (not args.video is None or not args.img is None)
 if args.skip:
     print("skip flag is abandoned, please refer to issue #207.")
@@ -104,7 +108,7 @@ if not args.video is None:
     videoCapture.release()
     if args.fps is None:
         fpsNotAssigned = True
-        args.fps = fps * (2 ** args.exp)
+        args.fps = fps * args.multi
     else:
         fpsNotAssigned = False
     videogen = skvideo.io.vreader(args.video)
@@ -135,7 +139,7 @@ else:
     if args.output is not None:
         vid_out_name = args.output
     else:
-        vid_out_name = '{}_{}X_{}fps.{}'.format(video_path_wo_ext, (2 ** args.exp), int(np.round(args.fps)), args.ext)
+        vid_out_name = '{}_{}X_{}fps.{}'.format(video_path_wo_ext, args.multi, int(np.round(args.fps)), args.ext)
     vid_out = cv2.VideoWriter(vid_out_name, fourcc, args.fps, (w, h))
 
 def clear_write_buffer(user_args, write_buffer):
@@ -238,19 +242,19 @@ while True:
         
     if ssim < 0.2:
         output = []
-        for i in range((2 ** args.exp) - 1):
+        for i in range(args.multi - 1):
             output.append(I0)
         '''
         output = []
-        step = 1 / (2 ** args.exp)
+        step = 1 / args.multi
         alpha = 0
-        for i in range((2 ** args.exp) - 1):
+        for i in range(args.multi - 1):
             alpha += step
             beta = 1-alpha
             output.append(torch.from_numpy(np.transpose((cv2.addWeighted(frame[:, :, ::-1], alpha, lastframe[:, :, ::-1], beta, 0)[:, :, ::-1].copy()), (2,0,1))).to(device, non_blocking=True).unsqueeze(0).float() / 255.)
         '''
     else:
-        output = make_inference(I0, I1, 2**args.exp-1) if args.exp else []
+        output = make_inference(I0, I1, args.multi-1)
 
     if args.montage:
         write_buffer.put(np.concatenate((lastframe, lastframe), 1))
