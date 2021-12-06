@@ -95,7 +95,7 @@ else:
     if model.version >= 3.9:
         img_list = [img0]        
         n = 2 ** args.exp
-        for i in range(n):
+        for i in range(n-1):
             res.append(model.inference(img0, img1, (i+1) * 1. / (n+1), args.scale))
         img_list.append(img1)
     else:
