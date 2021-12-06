@@ -6,7 +6,7 @@ For business cooperation, please [contact my email](mailto:huangzhewei@megvii.co
 
 ## Usage
 ### Model List
-v4.0 - 2021.12.6 | [Google Drive](https://drive.google.com/file/d/1mUK9iON6Es14oK46-cCflRoPTeGiI_A9/view?usp=sharing) | [百度网盘，密码:kzez](https://pan.baidu.com/s/1OHWOZkdL34chZyJRLq6BeQ) || v3.9beta - 2021.11.23 | [Google Drive](https://drive.google.com/file/d/1iosmPTt2ayAdSMqnI1cxO_R1-Qhrranp/view?usp=sharing) | [百度网盘, 密码:4nrl](https://pan.baidu.com/s/1dO-Yh9KY9gypa7baABADCA) 
+v4.0 - 2021.12.6 | [Google Drive](https://drive.google.com/file/d/1mUK9iON6Es14oK46-cCflRoPTeGiI_A9/view?usp=sharing) | [百度网盘，密码:mocg](https://pan.baidu.com/s/1NEqyqTNS4uj2TbTultZ3_g) || v3.9beta - 2021.11.23 | [Google Drive](https://drive.google.com/file/d/1iosmPTt2ayAdSMqnI1cxO_R1-Qhrranp/view?usp=sharing) | [百度网盘, 密码:4nrl](https://pan.baidu.com/s/1dO-Yh9KY9gypa7baABADCA) 
 
 v3.8 - 2021.6.17 | [Google Drive](https://drive.google.com/file/d/1O5KfS3KzZCY3imeCr2LCsntLhutKuAqj/view?usp=sharing) | [百度网盘, 密码:kxr3](https://pan.baidu.com/s/1X-jpWBZWe-IQBoNAsxo2mA) || v3.5 - 2021.6.12 | [Google Drive](https://drive.google.com/file/d/1YEi5KAdo0e6XnCTcbzOGCNtU33Lc2yO2/view?usp=sharing) | [百度网盘, 密码:1rb7](https://pan.baidu.com/s/1FqMcoIbYDV-Oq_ogcuuHjQ)
 
