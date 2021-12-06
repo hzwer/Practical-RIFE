@@ -38,6 +38,8 @@ except:
     model = Model()
     model.load_model(args.modelDir, -1)
     print("Loaded v1.x HD model")
+if not hasattr(model, 'version'):
+    model.version = 0
 model.eval()
 model.device()
 
@@ -64,39 +66,48 @@ img1 = F.pad(img1, padding)
 
 
 if args.ratio:
-    img_list = [img0]
-    img0_ratio = 0.0
-    img1_ratio = 1.0
-    if args.ratio <= img0_ratio + args.rthreshold / 2:
-        middle = img0
-    elif args.ratio >= img1_ratio - args.rthreshold / 2:
-        middle = img1
+    if model.version >= 3.9:
+        img_list = [img0, model.inference(img0, img1), img1]
     else:
-        tmp_img0 = img0
-        tmp_img1 = img1
-        for inference_cycle in range(args.rmaxcycles):
-            middle = model.inference(tmp_img0, tmp_img1)
-            middle_ratio = ( img0_ratio + img1_ratio ) / 2
-            if args.ratio - (args.rthreshold / 2) <= middle_ratio <= args.ratio + (args.rthreshold / 2):
-                break
-            if args.ratio > middle_ratio:
-                tmp_img0 = middle
-                img0_ratio = middle_ratio
-            else:
-                tmp_img1 = middle
-                img1_ratio = middle_ratio
-    img_list.append(middle)
-    img_list.append(img1)
+        img0_ratio = 0.0
+        img1_ratio = 1.0
+        if args.ratio <= img0_ratio + args.rthreshold / 2:
+            middle = img0
+        elif args.ratio >= img1_ratio - args.rthreshold / 2:
+            middle = img1
+        else:
+            tmp_img0 = img0
+            tmp_img1 = img1
+            for inference_cycle in range(args.rmaxcycles):
+                middle = model.inference(tmp_img0, tmp_img1)
+                middle_ratio = ( img0_ratio + img1_ratio ) / 2
+                if args.ratio - (args.rthreshold / 2) <= middle_ratio <= args.ratio + (args.rthreshold / 2):
+                    break
+                if args.ratio > middle_ratio:
+                    tmp_img0 = middle
+                    img0_ratio = middle_ratio
+                else:
+                    tmp_img1 = middle
+                    img1_ratio = middle_ratio
+        img_list.append(middle)
+        img_list.append(img1)
 else:
-    img_list = [img0, img1]
-    for i in range(args.exp):
-        tmp = []
-        for j in range(len(img_list) - 1):
-            mid = model.inference(img_list[j], img_list[j + 1])
-            tmp.append(img_list[j])
-            tmp.append(mid)
-        tmp.append(img1)
-        img_list = tmp
+    if model.version >= 3.9:
+        img_list = [img0]        
+        n = 2 ** args.exp
+        for i in range(n):
+            res.append(model.inference(img0, img1, (i+1) * 1. / (n+1), args.scale))
+        img_list.append(img1)
+    else:
+        img_list = [img0, img1]
+        for i in range(args.exp):
+            tmp = []
+            for j in range(len(img_list) - 1):
+                mid = model.inference(img_list[j], img_list[j + 1])
+                tmp.append(img_list[j])
+                tmp.append(mid)
+            tmp.append(img1)
+            img_list = tmp
 
 if not os.path.exists('output'):
     os.mkdir('output')
