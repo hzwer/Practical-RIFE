@@ -5,11 +5,11 @@ This project is based on [RIFE](https://github.com/hzwer/arXiv2020-RIFE) and aim
 
 **[RIFE-App](https://grisk.itch.io/rife-app) | [FlowFrames](https://nmkd.itch.io/flowframes) | [SVFI (中文)](https://github.com/YiWeiHuang-stack/Squirrel-Video-Frame-Interpolation)**
 
-For business cooperation, please [contact my email](mailto:huangzhewei@megvii.com).
+For business cooperation, please [contact our PM](mailto:wanghongyuan@megvii.com).
 
 ## Usage
 ### Model List
-v4.1 - 2022.3.23 | [Google Drive](https://drive.google.com/file/d/1CPJOzo2CHr8AN3GQCGKOKMVXIdt1RBR1/view?usp=sharing) | [百度网盘，密码:e4qg](https://pan.baidu.com/s/1_fqLrPQ6zH_81l1ObzRICg) ||
+v4.2 - 2022.8.10 | [Google Drive](https://drive.google.com/file/d/1JpDAJPrtRJcrOZMMlvEJJ8MUanAkA-99/view?usp=sharing) | [百度网盘，密码:y3ad](https://pan.baidu.com/s/1Io4Z_QUaBv-O7dYERqQAPw?pwd=y3ad) || v4.1 - 2022.3.23 | [Google Drive](https://drive.google.com/file/d/1CPJOzo2CHr8AN3GQCGKOKMVXIdt1RBR1/view?usp=sharing) | [百度网盘，密码:e4qg](https://pan.baidu.com/s/1_fqLrPQ6zH_81l1ObzRICg) 
 
 v4.0 - 2021.12.6 | [Google Drive](https://drive.google.com/file/d/1mUK9iON6Es14oK46-cCflRoPTeGiI_A9/view?usp=sharing) | [百度网盘，密码:mocg](https://pan.baidu.com/s/1NEqyqTNS4uj2TbTultZ3_g) || v3.9beta - 2021.11.23 | [Google Drive](https://drive.google.com/file/d/1iosmPTt2ayAdSMqnI1cxO_R1-Qhrranp/view?usp=sharing) | [百度网盘, 密码:4nrl](https://pan.baidu.com/s/1dO-Yh9KY9gypa7baABADCA) 
 
@@ -71,11 +71,11 @@ Provide models with lower calculation consumption
 ## Citation
 
 ```
-@article{huang2020rife,
-  title={RIFE: Real-Time Intermediate Flow Estimation for Video Frame Interpolation},
+@inproceedings{huang2022rife,
+  title={Real-Time Intermediate Flow Estimation for Video Frame Interpolation},
   author={Huang, Zhewei and Zhang, Tianyuan and Heng, Wen and Shi, Boxin and Zhou, Shuchang},
-  journal={arXiv preprint arXiv:2011.06294},
-  year={2020}
+  booktitle={Proceedings of the European Conference on Computer Vision (ECCV)},
+  year={2022}
 }
 ```
 
