@@ -67,7 +67,7 @@ img1 = F.pad(img1, padding)
 
 if args.ratio:
     if model.version >= 3.9:
-        img_list = [img0, model.inference(img0, img1), img1]
+        img_list = [img0, model.inference(img0, img1, args.ratio), img1]
     else:
         img0_ratio = 0.0
         img1_ratio = 1.0
