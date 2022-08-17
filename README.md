@@ -9,9 +9,9 @@ For business cooperation, please [contact our PM](mailto:wanghongyuan@megvii.com
 
 ## Usage
 ### Model List
-v4.2 - 2022.8.10 | [Google Drive](https://drive.google.com/file/d/1JpDAJPrtRJcrOZMMlvEJJ8MUanAkA-99/view?usp=sharing) | [百度网盘，密码:y3ad](https://pan.baidu.com/s/1Io4Z_QUaBv-O7dYERqQAPw?pwd=y3ad) || v4.1 - 2022.3.23 | [Google Drive](https://drive.google.com/file/d/1CPJOzo2CHr8AN3GQCGKOKMVXIdt1RBR1/view?usp=sharing) | [百度网盘，密码:e4qg](https://pan.baidu.com/s/1_fqLrPQ6zH_81l1ObzRICg) 
+We hide some models because they received some serious bug feedback or could be totally replaced by new models.
 
-v4.0 - 2021.12.6 | [Google Drive](https://drive.google.com/file/d/1mUK9iON6Es14oK46-cCflRoPTeGiI_A9/view?usp=sharing) | [百度网盘，密码:mocg](https://pan.baidu.com/s/1NEqyqTNS4uj2TbTultZ3_g) || v3.9beta - 2021.11.23 | [Google Drive](https://drive.google.com/file/d/1iosmPTt2ayAdSMqnI1cxO_R1-Qhrranp/view?usp=sharing) | [百度网盘, 密码:4nrl](https://pan.baidu.com/s/1dO-Yh9KY9gypa7baABADCA) 
+v4.3 - 2022.8.17 | [Google Drive](https://drive.google.com/file/d/1xrNofTGMHdt9sQv7-EOG0EChl8hZW_cU/view?usp=sharing) | [百度网盘，密码:q83a](https://pan.baidu.com/s/12AUAeZLZf5E1_Zx6WkS3xw?pwd=q83a) || v4.2 - 2022.8.10 | [Google Drive](https://drive.google.com/file/d/1JpDAJPrtRJcrOZMMlvEJJ8MUanAkA-99/view?usp=sharing) | [百度网盘，密码:y3ad](https://pan.baidu.com/s/1Io4Z_QUaBv-O7dYERqQAPw?pwd=y3ad) 
 
 v3.8 - 2021.6.17 | [Google Drive](https://drive.google.com/file/d/1O5KfS3KzZCY3imeCr2LCsntLhutKuAqj/view?usp=sharing) | [百度网盘, 密码:kxr3](https://pan.baidu.com/s/1X-jpWBZWe-IQBoNAsxo2mA) || v3.5 - 2021.6.12 | [Google Drive](https://drive.google.com/file/d/1YEi5KAdo0e6XnCTcbzOGCNtU33Lc2yO2/view?usp=sharing) | [百度网盘, 密码:1rb7](https://pan.baidu.com/s/1FqMcoIbYDV-Oq_ogcuuHjQ)
 
