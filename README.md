@@ -9,7 +9,9 @@ Thanks to [SVFI team](https://github.com/Justin62628/Squirrel-RIFE) to support m
 
 ## Usage
 ### Model List
-We hide some models because they received some serious bug feedback or could be totally replaced by new models.
+The content of these links is under the same MIT license as this project.
+
+We hide some models because they received some serious bug feedback or could be totally replaced by new models. 
 
 v4.4 - 2022.8.24 | [Google Drive](https://drive.google.com/file/d/1eI24Kou0FUdlHLkwXfk-_xiZqKaZZFZX/view?usp=sharing) | [百度网盘，密码:2q63](https://pan.baidu.com/s/1LXVWNN5cAq5CZmauobD5yQ) ||
 
