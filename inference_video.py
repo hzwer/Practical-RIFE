@@ -15,7 +15,6 @@ warnings.filterwarnings("ignore")
 
 def transferAudio(sourceVideo, targetVideo):
     import shutil
-    import moviepy.editor
     tempAudioFileName = "./temp/audio.mkv"
 
     # split audio from original video file and store in "temp" directory
@@ -189,7 +188,7 @@ def frame_to_image(frame):
     img = (torch
         .from_numpy(np.transpose(frame, (2,0,1)))
         .to(device, non_blocking=True)
-        .unsqueeze(0).float() / 255.
+        .unsqueeze(0) / 255.
     )
     if(args.fp16):
         return F.pad(img, padding).half()
@@ -220,7 +219,7 @@ while True:
 
     break_flag = False
     # find next key frame (the frame is not same as previous frame)
-    # anime normally use 1 image for 2~3 frames (8/12 FPS) 一拍二 / 一拍三
+    # anime normally use 1 image for 2~3 frames (12/8 FPS) 一拍二 / 一拍三
     # so max skip frames = 2
     next_frame = 0
     while next_frame < 2:
@@ -239,7 +238,7 @@ while True:
     inference_count = (next_frame * args.multi) - 1
 
     if ssim < 0.2:
-        # scene changed, just use previous
+        # scene changed, just use previous frame
         output = []
         for i in range(inference_count):
             output.append(I0)
@@ -265,7 +264,7 @@ while True:
         for mid in output:
             mid = (((mid[0] * 255.).byte().cpu().numpy().transpose(1, 2, 0)))
             write_buffer.put(mid[:h, :w])
-    pbar.update(1)
+    pbar.update(next_frame)
     lastframe = frame
     if break_flag:
         break
