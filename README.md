@@ -13,7 +13,7 @@ The content of these links is under the same MIT license as this project.
 
 We hide some models because they received some serious bug feedback or could be totally replaced by new models. 
 
-v4.6 - 2022.9.26 | [Google Drive](https://drive.google.com/file/d/1EAbsfY7mjnXNa6RAsATj2ImAEqmHTjbE/view?usp=sharing) | [百度网盘，密码:gtkf](https://pan.baidu.com/s/1Oc1enSD7kGnoQda2MdPYsw)
+v4.7 - 2023.9.25 | [Google Drive](https://drive.google.com/file/d/1dCuyDT2Vbj-hLxy_0vDRD4u7W1teik5-/view?usp=share_link) | [百度网盘，密码自动](https://pan.baidu.com/s/1S36htA-DuGUD5uVOiEbV0g?pwd=ybia) || v4.6 - 2022.9.26 | [Google Drive](https://drive.google.com/file/d/1EAbsfY7mjnXNa6RAsATj2ImAEqmHTjbE/view?usp=sharing) | [百度网盘，密码:gtkf](https://pan.baidu.com/s/1Oc1enSD7kGnoQda2MdPYsw)
 
 v4.5 - 2022.9.14 | [Google Drive](https://drive.google.com/file/d/17Bl_IhTBexogI9BV817kTjf7eTuJEDc0/view?usp=sharing) | [百度网盘，密码:mvr0](https://pan.baidu.com/s/1gadsLlYMo8uNGA9wjhYy0w) || v4.4 - 2022.8.24 | [Google Drive](https://drive.google.com/file/d/1eI24Kou0FUdlHLkwXfk-_xiZqKaZZFZX/view?usp=sharing) | [百度网盘，密码:2q63](https://pan.baidu.com/s/1LXVWNN5cAq5CZmauobD5yQ)
 
