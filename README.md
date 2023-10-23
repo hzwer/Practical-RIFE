@@ -61,7 +61,7 @@ python3 inference_video.py --multi=3 --video=video.mp4 --fps=60
 Please share your original video clip with us via Github issue and Google Drive. We may add it to our test set so that it is likely to be improved in later versions. It will be beneficial to attach a screenshot of the model's effect on the issue.
 
 ## Model training
-Since we are in the research stage of engineering tricks, and our work and paper have not been authorized for patents nor published, we are sorry that we cannot provide users with training scripts. If you are interested in academic exploration, please refer to our academic research project [RIFE](https://github.com/hzwer/arXiv2020-RIFE). 
+The whole repo can be downloaded [here](https://drive.google.com/file/d/1zoSz7b8c6kUsnd4gYZ_6TrKxa7ghHJWW/view?usp=sharing). However, we currently do not have the time to organize it well, it is for reference only.
 
 ## To-do List
 Multi-frame input of the model
