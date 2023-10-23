@@ -1,7 +1,9 @@
 # Practical-RIFE 
 **[V4.0 Promotional Video (宣传视频）](https://www.bilibili.com/video/BV1J3411t7qT?p=1&share_medium=iphone&share_plat=ios&share_session_id=7AE3DA72-D05C-43A0-9838-E2A80885BD4E&share_source=QQ&share_tag=s_i&timestamp=1639643780&unique_k=rjqO0EK)**
 
-2023.9.25 - We recently release a [new v4.7 model](https://github.com/hzwer/Practical-RIFE/blob/main/README.md#model-list) optimized for anime scenes! 🎉
+2023.10 - We recently release new v4.7-4.8 optimized for anime scenes! 🎉
+
+<img width="698" alt="image" src="https://github.com/hzwer/Practical-RIFE/assets/10103856/46241016-26e6-4567-bd88-9875a9966d16">
 
 This project is based on [RIFE](https://github.com/hzwer/arXiv2020-RIFE) and aims to make RIFE more practical for users by adding various features and designing new models. Because improving the PSNR index is not compatible with subjective effects, we hope this part of work and our academic research are independent of each other. To reduce development pressure, this project is for engineers and developers. For common users, we recommend the following softwares:
 
