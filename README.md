@@ -11,7 +11,7 @@ This project is based on [RIFE](https://github.com/hzwer/arXiv2020-RIFE) and aim
 
 **[SVFI (中文)](https://github.com/YiWeiHuang-stack/Squirrel-Video-Frame-Interpolation) | [RIFE-App](https://grisk.itch.io/rife-app) | [FlowFrames](https://nmkd.itch.io/flowframes) | [Drop frame fixer and FPS converter](https://github.com/may-son/RIFE-FixDropFrames-and-ConvertFPS)**
 
-Thanks to [SVFI team](https://github.com/Justin62628/Squirrel-RIFE) to support model testing on Animation. For business cooperation, please [contact our PM](mailto:wanghongyuan@megvii.com). 
+Thanks to [SVFI team](https://github.com/Justin62628/Squirrel-RIFE) to support model testing on Animation. 
 
 ## Usage
 ### Model List
@@ -88,6 +88,14 @@ Provide models with lower calculation consumption
   author={Huang, Zhewei and Zhang, Tianyuan and Heng, Wen and Shi, Boxin and Zhou, Shuchang},
   booktitle={Proceedings of the European Conference on Computer Vision (ECCV)},
   year={2022}
+}
+```
+```
+@inproceedings{huang2024safa,
+  title={Scale-Adaptive Feature Aggregation for Efficient Space-Time Video Super-Resolution},
+  author={Huang, Zhewei and Huang, Ailin and Hu, Xiaotao and Hu, Chen and Xu, Jun and Zhou, Shuchang},
+  booktitle={Winter Conference on Applications of Computer Vision (WACV)},
+  year={2024}
 }
 ```
 
