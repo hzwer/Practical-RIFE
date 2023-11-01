@@ -13,7 +13,10 @@ This project is based on [RIFE](https://github.com/hzwer/arXiv2020-RIFE) and aim
 
 Thanks to [SVFI team](https://github.com/Justin62628/Squirrel-RIFE) to support model testing on Animation. 
 
-## Usage
+## Video Super-Resolution
+WIP
+
+## Frame Interpolation
 ### Model List
 The content of these links is under the same MIT license as this project.
 
@@ -39,8 +42,6 @@ pip3 install -r requirements.txt
 Download a model from the model list and put *.py and flownet.pkl on train_log/
 ### Run
 
-**Video Frame Interpolation**
-
 You can use our [demo video](https://drive.google.com/file/d/1i3xlKb7ax7Y70khcTcuePi6E7crO_dFc/view?usp=sharing) or your video. 
 ```
 python3 inference_video.py --multi=2 --video=video.mp4 
@@ -63,13 +64,10 @@ python3 inference_video.py --multi=3 --video=video.mp4 --fps=60
 ```
 (add slomo effect, the audio will be removed)
 
-## Report Bad Cases
-Please share your original video clip with us via Github issue and Google Drive. We may add it to our test set so that it is likely to be improved in later versions. It will be beneficial to attach a screenshot of the model's effect on the issue.
-
-## Model training
+### Model training
 The whole repo can be downloaded [here](https://drive.google.com/file/d/1zoSz7b8c6kUsnd4gYZ_6TrKxa7ghHJWW/view?usp=sharing). However, we currently do not have the time to organize it well, it is for reference only.
 
-## To-do List
+### To-do List
 Multi-frame input of the model
 
 Frame interpolation at any time location (Done)
