@@ -73,18 +73,18 @@ if torch.cuda.is_available():
     torch.backends.cudnn.enabled = True
     torch.backends.cudnn.benchmark = True
     if(args.fp16):
+        print('set fp16')
         torch.set_default_tensor_type(torch.cuda.HalfTensor)
 
-from train_log.model import Model
 try:
     from train_log.model import Model
 except:
     print("Please download our model from model list")
 model = Model()
-model.load_model(args.modelDir, -1)
+model.device()
+model.load_model(args.modelDir)
 print("Loaded SAFA model.")
 model.eval()
-model.device()
 
 if not args.video is None:
     videoCapture = cv2.VideoCapture(args.video)
@@ -121,7 +121,7 @@ else:
         vid_out_name = args.output
     else:
         vid_out_name = '{}_2X{}'.format(video_path_wo_ext, ext)
-    vid_out = cv2.VideoWriter(vid_out_name, fourcc, fps, (w*2, h*2))
+    vid_out = cv2.VideoWriter(vid_out_name, fourcc, fps, (2*w, 2*h))
 
 def clear_write_buffer(user_args, write_buffer):
     cnt = 0
@@ -150,7 +150,7 @@ def pad_image(img):
     else:
         return F.pad(img, padding)
 
-tmp = 64
+tmp = 32
 ph = ((h - 1) // tmp + 1) * tmp
 pw = ((w - 1) // tmp + 1) * tmp
 padding = (0, pw - w, 0, ph - h)
@@ -162,22 +162,30 @@ _thread.start_new_thread(clear_write_buffer, (args, write_buffer))
 
 I1 = torch.from_numpy(np.transpose(lastframe, (2,0,1))).to(device, non_blocking=True).unsqueeze(0).float() / 255.
 I1 = pad_image(I1)
+cnt = 0
 while True:
     frame = read_buffer.get()
     if frame is None:
         break
-    lastframe = cv2.resize(lastframe, (pw*2, ph*2))
-    frame = cv2.resize(frame, (pw*2, ph*2))
-    I0 = torch.from_numpy(np.transpose(lastframe, (2,0,1))).to(device, non_blocking=True).unsqueeze(0).float() / 255.
-    I1 = torch.from_numpy(np.transpose(frame, (2,0,1))).to(device, non_blocking=True).unsqueeze(0).float() / 255.
-    out = model.inference(I0, I1)
+    lastframe_2x = cv2.resize(lastframe, (0, 0), fx=2, fy=2, interpolation=cv2.INTER_CUBIC)
+    frame_2x = cv2.resize(frame, (0, 0), fx=2, fy=2, interpolation=cv2.INTER_CUBIC)
+    I0 = torch.from_numpy(np.transpose(lastframe_2x, (2,0,1))).to(device, non_blocking=True).unsqueeze(0).float() / 255.
+    I1 = torch.from_numpy(np.transpose(frame_2x, (2,0,1))).to(device, non_blocking=True).unsqueeze(0).float() / 255.
+    I0_small = F.interpolate(I0, (32, 32), mode='bilinear', align_corners=False)
+    I1_small = F.interpolate(I1, (32, 32), mode='bilinear', align_corners=False)
+    ssim = ssim_matlab(I0_small[:, :3], I1_small[:, :3])
+    if ssim < 0.2:
+        out = [model.inference(I0, I0, [0])[0], model.inference(I1, I1, [0])[0]]
+    else:
+        out = model.inference(I0, I1, [0, 1])
+    assert(len(out) == 2)
     write_buffer.put((out[0][0] * 255).byte().cpu().numpy().transpose(1, 2, 0)[:2*h, :2*w])
     write_buffer.put((out[1][0] * 255).byte().cpu().numpy().transpose(1, 2, 0)[:2*h, :2*w])
     lastframe = read_buffer.get()
     if lastframe is None:
-        break    
+        break
     pbar.update(2)
-    break
+    cnt += 2
 
 import time
 while(not write_buffer.empty()):
