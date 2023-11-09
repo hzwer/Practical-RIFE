@@ -1,7 +1,7 @@
 # Practical-RIFE 
 **[V4.0 Promotional Video (宣传视频）](https://www.bilibili.com/video/BV1J3411t7qT?p=1&share_medium=iphone&share_plat=ios&share_session_id=7AE3DA72-D05C-43A0-9838-E2A80885BD4E&share_source=QQ&share_tag=s_i&timestamp=1639643780&unique_k=rjqO0EK)**
 
-2023.10 - We recently release new v4.7-4.8 optimized for anime scenes! 🎉
+2023.10 - We recently release new v4.7-4.10 optimized for anime scenes! 🎉
 
 Vimeo90K validation curve: 
 
@@ -22,6 +22,7 @@ The content of these links is under the same MIT license as this project.
 
 We hide some models because they received some serious bug feedback or could be totally replaced by new models. 
 
+v4.10 - 2023.11.09 | [Google Drive](https://drive.google.com/file/d/1v6dOolTC7R5ZJbUO2KcatkbDO-pBnIEi/view?usp=sharing) | [百度网盘](https://pan.baidu.com/s/1IKClY1NFxEhtLKoca_xNBw?pwd=rey7)
 v4.9 - 2023.11.01 | [Google Drive](https://drive.google.com/file/d/11Y0Yc2mXf0SP1obZeSJXpToB_njQO1jD/view?usp=sharing) | [百度网盘](https://pan.baidu.com/s/1xhb0j2IQ3EEBndZN2fW56A?pwd=yegq) || v4.8 - 2023.10.23 | [Google Drive](https://drive.google.com/file/d/1V6yJsfZgxfx3l03k1sex3YpLdqsJbj61/view?usp=sharing) | [百度网盘](https://pan.baidu.com/s/1cT8v6Dj6N4IepoNOB_d9NQ?pwd=ss6j)
 
 v4.7 - 2023.9.25 | [Google Drive](https://drive.google.com/file/d/1dCuyDT2Vbj-hLxy_0vDRD4u7W1teik5-/view?usp=share_link) | [百度网盘，密码:m38k](https://pan.baidu.com/s/11Isys0J6vETyRj3pVRIMXg?pwd=m38k) || v4.6 - 2022.9.26 | [Google Drive](https://drive.google.com/file/d/1EAbsfY7mjnXNa6RAsATj2ImAEqmHTjbE/view?usp=sharing) | [百度网盘，密码:gtkf](https://pan.baidu.com/s/1Oc1enSD7kGnoQda2MdPYsw)
