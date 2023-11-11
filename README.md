@@ -5,7 +5,7 @@
 
 Vimeo90K validation curve: 
 
-<img width="698" alt="image" src="https://github.com/hzwer/Practical-RIFE/assets/10103856/eec0daf6-486e-41a7-945e-0dc0cde9efc3">
+<img width="698" alt="image" src="https://github.com/hzwer/Practical-RIFE/assets/10103856/5bde95ad-48c1-4689-bcfe-9fa528a6c59e">
 
 This project is based on [RIFE](https://github.com/hzwer/arXiv2020-RIFE) and [SAFA](https://github.com/megvii-research/WACV2024-SAFA). We aim to make them more practical for users by adding various features and designing new models. Because improving the PSNR index is not compatible with subjective effects, we hope this part of work and our academic research are independent of each other. To reduce development pressure, this project is for engineers and developers. For common users, we recommend the following softwares:
 
