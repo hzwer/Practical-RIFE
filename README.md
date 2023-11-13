@@ -20,7 +20,7 @@ The content of these links is under the same MIT license as this project.
 
 We hide some models because they received some serious bug feedback or could be totally replaced by new models. 
 
-v4.11 - 2023.11.11 | [Google Drive](https://drive.google.com/file/d/16a6J5bt_lZg4zRWmKjav447SeusHowR0/view?usp=sharing) | [百度网盘](https://pan.baidu.com/s/1L2gUYOUDS-8Y7QtyMqG_8w?pwd=qa6j) || v4.10 - 2023.11.09 | [Google Drive](https://drive.google.com/file/d/1v6dOolTC7R5ZJbUO2KcatkbDO-pBnIEi/view?usp=sharing) | [百度网盘](https://pan.baidu.com/s/1IKClY1NFxEhtLKoca_xNBw?pwd=rey7)
+v4.12 - 2023.11.13 | [Google Drive](https://drive.google.com/file/d/1jzaaN-0EQpqaef124QqS8pZaFZuXxQUh/view?usp=share_link) | [百度网盘](https://pan.baidu.com/s/1lz4HaFnyh1eeMFfZqHHuVA?pwd=ps7j) || v4.11 - 2023.11.11 | [Google Drive](https://drive.google.com/file/d/16a6J5bt_lZg4zRWmKjav447SeusHowR0/view?usp=sharing) | [百度网盘](https://pan.baidu.com/s/1L2gUYOUDS-8Y7QtyMqG_8w?pwd=qa6j) 
 
 v4.9 - 2023.11.01 | [Google Drive](https://drive.google.com/file/d/11Y0Yc2mXf0SP1obZeSJXpToB_njQO1jD/view?usp=sharing) | [百度网盘](https://pan.baidu.com/s/1xhb0j2IQ3EEBndZN2fW56A?pwd=yegq) || v4.8 - 2023.10.23 | [Google Drive](https://drive.google.com/file/d/1V6yJsfZgxfx3l03k1sex3YpLdqsJbj61/view?usp=sharing) | [百度网盘](https://pan.baidu.com/s/1cT8v6Dj6N4IepoNOB_d9NQ?pwd=ss6j)
 
