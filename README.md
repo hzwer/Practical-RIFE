@@ -18,11 +18,11 @@ WIP
 ### Model List
 The content of these links is under the same MIT license as this project.
 
-We hide some models because they received some serious bug feedback or could be totally replaced by new models. 
+The most popular versions currently seem to be v4.9 and v4.12, and I re-uploaded v4.9.1 and 4.12.1, modifying the inference code to support the ensemble switch.
 
-v4.12 - 2023.11.13 | [Google Drive](https://drive.google.com/file/d/1jzaaN-0EQpqaef124QqS8pZaFZuXxQUh/view?usp=share_link) | [百度网盘](https://pan.baidu.com/s/1lz4HaFnyh1eeMFfZqHHuVA?pwd=ps7j) || v4.11 - 2023.11.11 | [Google Drive](https://drive.google.com/file/d/16a6J5bt_lZg4zRWmKjav447SeusHowR0/view?usp=sharing) | [百度网盘](https://pan.baidu.com/s/1L2gUYOUDS-8Y7QtyMqG_8w?pwd=qa6j) 
+v4.12 - 2023.11.13 | [Google Drive](https://drive.google.com/file/d/1o9cdJusMrws0FDUv6kC-lc4itG6x26Gq/view?usp=sharing) | [百度网盘](https://pan.baidu.com/s/1UmAe_vya85EroJqpbPaIeQ?pwd=c413) || v4.11 - 2023.11.11 | [Google Drive](https://drive.google.com/file/d/16a6J5bt_lZg4zRWmKjav447SeusHowR0/view?usp=sharing) | [百度网盘](https://pan.baidu.com/s/1L2gUYOUDS-8Y7QtyMqG_8w?pwd=qa6j) 
 
-v4.9 - 2023.11.01 | [Google Drive](https://drive.google.com/file/d/11Y0Yc2mXf0SP1obZeSJXpToB_njQO1jD/view?usp=sharing) | [百度网盘](https://pan.baidu.com/s/1xhb0j2IQ3EEBndZN2fW56A?pwd=yegq) || v4.8 - 2023.10.23 | [Google Drive](https://drive.google.com/file/d/1V6yJsfZgxfx3l03k1sex3YpLdqsJbj61/view?usp=sharing) | [百度网盘](https://pan.baidu.com/s/1cT8v6Dj6N4IepoNOB_d9NQ?pwd=ss6j)
+v4.9 - 2023.11.01 | [Google Drive](https://drive.google.com/file/d/1kBASCsacGBjmzMxr2gscXcDUMdYiOwZK/view?usp=sharing) | [百度网盘](https://pan.baidu.com/s/1L-Sp86yJG_kSoPNcDWHdSg?pwd=im4q) || v4.8 - 2023.10.23 | [Google Drive](https://drive.google.com/file/d/1V6yJsfZgxfx3l03k1sex3YpLdqsJbj61/view?usp=sharing) | [百度网盘](https://pan.baidu.com/s/1cT8v6Dj6N4IepoNOB_d9NQ?pwd=ss6j)
 
 v4.7 - 2023.9.25 | [Google Drive](https://drive.google.com/file/d/1dCuyDT2Vbj-hLxy_0vDRD4u7W1teik5-/view?usp=share_link) | [百度网盘，密码:m38k](https://pan.baidu.com/s/11Isys0J6vETyRj3pVRIMXg?pwd=m38k) || v4.6 - 2022.9.26 | [Google Drive](https://drive.google.com/file/d/1EAbsfY7mjnXNa6RAsATj2ImAEqmHTjbE/view?usp=sharing) | [百度网盘，密码:gtkf](https://pan.baidu.com/s/1Oc1enSD7kGnoQda2MdPYsw)
 
