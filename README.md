@@ -20,7 +20,9 @@ The content of these links is under the same MIT license as this project.
 
 The most popular versions currently seem to be v4.9 and v4.12. I've reuploaded some minor updates to support ensemble mode.
 
-v4.12.2 - 2023.11.13 | [Google Drive](https://drive.google.com/file/d/1ZHrOBL217ItwdpUBcBtRE3XBD-yy-g2S/view?usp=share_link) | [百度网盘](https://pan.baidu.com/s/1zyAw-qZJsIsAyFOIZKumYQ?pwd=gwij) || v4.11.1 - 2023.11.11 | [Google Drive](https://drive.google.com/file/d/1Dwbp4qAeDVONPz2a10aC2a7-awD6TZvL/view?usp=share_link) | [百度网盘](https://pan.baidu.com/s/1TZiZuCHaG4SKmxKrqbbBDQ?pwd=pw2i) 
+v4.12.2 - 2023.11.13 | [Google Drive](https://drive.google.com/file/d/1ZHrOBL217ItwdpUBcBtRE3XBD-yy-g2S/view?usp=share_link) | [百度网盘](https://pan.baidu.com/s/1zyAw-qZJsIsAyFOIZKumYQ?pwd=gwij) 
+
+v4.11.1 - 2023.11.11 | [Google Drive](https://drive.google.com/file/d/1Dwbp4qAeDVONPz2a10aC2a7-awD6TZvL/view?usp=share_link) | [百度网盘](https://pan.baidu.com/s/1TZiZuCHaG4SKmxKrqbbBDQ?pwd=pw2i) || v4.10.1 - 2023.11.09 [Google Drive](https://drive.google.com/file/d/1WNot1qYBt05LUyY1O9Uwwv5_K8U6t8_x/view?usp=sharing) | [百度网盘](https://pan.baidu.com/s/19niopL-Qwu2qOydIB1pEBg?pwd=88kv)
 
 v4.9.2 - 2023.11.01 | [Google Drive](https://drive.google.com/file/d/1UssCvbL8N-ty0xIKM5G5ZTEgp9o4w3hp/view?usp=sharing) | [百度网盘](https://pan.baidu.com/s/18cbx3EP4HWgSa1vkcXvvyw?pwd=swr9) || v4.8.1 - 2023.10.23 | [Google Drive](https://drive.google.com/file/d/1wZa3SyegLPUwBQWmoDLM0MumWd2-ii63/view?usp=sharing) | [百度网盘](https://pan.baidu.com/s/1hq-O3QY5OVzLHIQ90jKkyg?pwd=vhsq)
 
