@@ -18,13 +18,13 @@ WIP
 ### Model List
 The content of these links is under the same MIT license as this project.
 
-The most popular versions currently seem to be v4.9 and v4.12, and I re-uploaded v4.9.1 and 4.12.1, modifying the inference code to support the ensemble switch.
+The most popular versions currently seem to be v4.9 and v4.12. I've reuploaded some minor updates to support ensemble mode.
 
-v4.12 - 2023.11.13 | [Google Drive](https://drive.google.com/file/d/1o9cdJusMrws0FDUv6kC-lc4itG6x26Gq/view?usp=sharing) | [百度网盘](https://pan.baidu.com/s/1UmAe_vya85EroJqpbPaIeQ?pwd=c413) || v4.11 - 2023.11.11 | [Google Drive](https://drive.google.com/file/d/16a6J5bt_lZg4zRWmKjav447SeusHowR0/view?usp=sharing) | [百度网盘](https://pan.baidu.com/s/1L2gUYOUDS-8Y7QtyMqG_8w?pwd=qa6j) 
+v4.12.2 - 2023.11.13 | [Google Drive](https://drive.google.com/file/d/1ZHrOBL217ItwdpUBcBtRE3XBD-yy-g2S/view?usp=share_link) | [百度网盘](https://pan.baidu.com/s/1zyAw-qZJsIsAyFOIZKumYQ?pwd=gwij) || v4.11.1 - 2023.11.11 | [Google Drive](https://drive.google.com/file/d/1Dwbp4qAeDVONPz2a10aC2a7-awD6TZvL/view?usp=share_link) | [百度网盘](https://pan.baidu.com/s/1TZiZuCHaG4SKmxKrqbbBDQ?pwd=pw2i) 
 
-v4.9 - 2023.11.01 | [Google Drive](https://drive.google.com/file/d/1kBASCsacGBjmzMxr2gscXcDUMdYiOwZK/view?usp=sharing) | [百度网盘](https://pan.baidu.com/s/1L-Sp86yJG_kSoPNcDWHdSg?pwd=im4q) || v4.8 - 2023.10.23 | [Google Drive](https://drive.google.com/file/d/1V6yJsfZgxfx3l03k1sex3YpLdqsJbj61/view?usp=sharing) | [百度网盘](https://pan.baidu.com/s/1cT8v6Dj6N4IepoNOB_d9NQ?pwd=ss6j)
+v4.9.2 - 2023.11.01 | [Google Drive](https://drive.google.com/file/d/1UssCvbL8N-ty0xIKM5G5ZTEgp9o4w3hp/view?usp=sharing) | [百度网盘](https://pan.baidu.com/s/18cbx3EP4HWgSa1vkcXvvyw?pwd=swr9) || v4.8.1 - 2023.10.23 | [Google Drive](https://drive.google.com/file/d/1wZa3SyegLPUwBQWmoDLM0MumWd2-ii63/view?usp=sharing) | [百度网盘](https://pan.baidu.com/s/1hq-O3QY5OVzLHIQ90jKkyg?pwd=vhsq)
 
-v4.7 - 2023.9.25 | [Google Drive](https://drive.google.com/file/d/1dCuyDT2Vbj-hLxy_0vDRD4u7W1teik5-/view?usp=share_link) | [百度网盘，密码:m38k](https://pan.baidu.com/s/11Isys0J6vETyRj3pVRIMXg?pwd=m38k) || v4.6 - 2022.9.26 | [Google Drive](https://drive.google.com/file/d/1EAbsfY7mjnXNa6RAsATj2ImAEqmHTjbE/view?usp=sharing) | [百度网盘，密码:gtkf](https://pan.baidu.com/s/1Oc1enSD7kGnoQda2MdPYsw)
+v4.7.1 - 2023.9.25 | [Google Drive](https://drive.google.com/file/d/1s2zMMIJrUAFLexktm1rWNhlIyOYJ3_ju/view?usp=sharing) | [百度网盘，密码:m38k](https://pan.baidu.com/s/1Mc7bvkVWMUG9F0Gqb_Vcpg?pwd=848u) || v4.6 - 2022.9.26 | [Google Drive](https://drive.google.com/file/d/1EAbsfY7mjnXNa6RAsATj2ImAEqmHTjbE/view?usp=sharing) | [百度网盘，密码:gtkf](https://pan.baidu.com/s/1Oc1enSD7kGnoQda2MdPYsw)
 
 v4.3 - 2022.8.17 | [Google Drive](https://drive.google.com/file/d/1xrNofTGMHdt9sQv7-EOG0EChl8hZW_cU/view?usp=sharing) | [百度网盘，密码:q83a](https://pan.baidu.com/s/12AUAeZLZf5E1_Zx6WkS3xw?pwd=q83a) || v4.2 - 2022.8.10 | [Google Drive](https://drive.google.com/file/d/1JpDAJPrtRJcrOZMMlvEJJ8MUanAkA-99/view?usp=sharing) | [百度网盘，密码:y3ad](https://pan.baidu.com/s/1Io4Z_QUaBv-O7dYERqQAPw?pwd=y3ad) 
 
