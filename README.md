@@ -11,8 +11,8 @@ This project is based on [RIFE](https://github.com/hzwer/arXiv2020-RIFE) and [SA
 
 Thanks to [SVFI team](https://github.com/Justin62628/Squirrel-RIFE) to support model testing on Animation. 
 
-## Video Super-Resolution
-WIP
+## Video Enhancement
+We are developing a practical model of [SAFA](https://github.com/megvii-research/WACV2024-SAFA). We encountered some difficulties in simulating real degradation. Some beta releases are expected in the next two weeks.
 
 ## Frame Interpolation
 ### Model List
