@@ -111,6 +111,7 @@ else:
     videogen = videogen[1:]
 
 h, w, _ = lastframe.shape
+
 vid_out_name = None
 vid_out = None
 if args.png:
@@ -121,7 +122,7 @@ else:
         vid_out_name = args.output
     else:
         vid_out_name = '{}_2X{}'.format(video_path_wo_ext, ext)
-    vid_out = cv2.VideoWriter(vid_out_name, fourcc, fps, (2*w, 2*h))
+    vid_out = cv2.VideoWriter(vid_out_name, fourcc, fps, (w, h))
 
 def clear_write_buffer(user_args, write_buffer):
     cnt = 0
@@ -146,14 +147,14 @@ def build_read_buffer(user_args, read_buffer, videogen):
 
 def pad_image(img):
     if(args.fp16):
-        return F.pad(img, padding).half()
+        return F.pad(img, padding, mode='reflect').half()
     else:
-        return F.pad(img, padding)
+        return F.pad(img, padding, mode='reflect')
 
 tmp = 64
-ph = ((2*h - 1) // tmp + 1) * tmp
-pw = ((2*w - 1) // tmp + 1) * tmp
-padding = (0, pw - 2*w, 0, ph - 2*h)
+ph = ((h - 1) // tmp + 1) * tmp
+pw = ((w - 1) // tmp + 1) * tmp
+padding = (0, pw - w, 0, ph - h)
 pbar = tqdm(total=tot_frame)
 write_buffer = Queue(maxsize=500)
 read_buffer = Queue(maxsize=500)
@@ -164,10 +165,10 @@ while True:
     frame = read_buffer.get()
     if frame is None:
         break
-    lastframe_2x = cv2.resize(lastframe, (0, 0), fx=2, fy=2, interpolation=cv2.INTER_CUBIC)
-    frame_2x = cv2.resize(frame, (0, 0), fx=2, fy=2, interpolation=cv2.INTER_CUBIC)
-    I0 = pad_image(torch.from_numpy(np.transpose(lastframe_2x, (2,0,1))).to(device, non_blocking=True).unsqueeze(0).float() / 255.)
-    I1 = pad_image(torch.from_numpy(np.transpose(frame_2x, (2,0,1))).to(device, non_blocking=True).unsqueeze(0).float() / 255.)
+    # lastframe_2x = cv2.resize(lastframe, (0, 0), fx=2, fy=2, interpolation=cv2.INTER_CUBIC)
+    # frame_2x = cv2.resize(frame, (0, 0), fx=2, fy=2, interpolation=cv2.INTER_CUBIC)
+    I0 = pad_image(torch.from_numpy(np.transpose(lastframe, (2,0,1))).to(device, non_blocking=True).unsqueeze(0).float() / 255.)
+    I1 = pad_image(torch.from_numpy(np.transpose(frame, (2,0,1))).to(device, non_blocking=True).unsqueeze(0).float() / 255.)
     I0_small = F.interpolate(I0, (32, 32), mode='bilinear', align_corners=False)
     I1_small = F.interpolate(I1, (32, 32), mode='bilinear', align_corners=False)
     ssim = ssim_matlab(I0_small[:, :3], I1_small[:, :3])
@@ -176,8 +177,8 @@ while True:
     else:
         out = model.inference(I0, I1, [0, 1])
     assert(len(out) == 2)
-    write_buffer.put((out[0][0] * 255).byte().cpu().numpy().transpose(1, 2, 0)[:2*h, :2*w])
-    write_buffer.put((out[1][0] * 255).byte().cpu().numpy().transpose(1, 2, 0)[:2*h, :2*w])
+    write_buffer.put((out[0][0] * 255).byte().cpu().numpy().transpose(1, 2, 0)[:h, :w])
+    write_buffer.put((out[1][0] * 255).byte().cpu().numpy().transpose(1, 2, 0)[:h, :w])
     lastframe = read_buffer.get()
     if lastframe is None:
         break
