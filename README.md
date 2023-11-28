@@ -11,8 +11,8 @@ This project is based on [RIFE](https://github.com/hzwer/arXiv2020-RIFE) and [SA
 
 Thanks to [SVFI team](https://github.com/Justin62628/Squirrel-RIFE) to support model testing on Animation. 
 
-## Video Super-Resolution
-WIP
+## Video Enhancement
+We are developing a practical model of [SAFA](https://github.com/megvii-research/WACV2024-SAFA). We encountered some difficulties in simulating real degradation. Some beta releases are expected in the next two weeks.
 
 ## Frame Interpolation
 ### Model List
@@ -20,7 +20,7 @@ The content of these links is under the same MIT license as this project.
 
 The most popular versions currently seem to be v4.9 and v4.12. I've reuploaded some minor updates to support ensemble mode.
 
-v4.12.2 - 2023.11.13 | [Google Drive](https://drive.google.com/file/d/1ZHrOBL217ItwdpUBcBtRE3XBD-yy-g2S/view?usp=share_link) | [百度网盘](https://pan.baidu.com/s/1zyAw-qZJsIsAyFOIZKumYQ?pwd=gwij) || 4.12.**lite** (small model) - 2023.11.17 | [Google Drive](https://drive.google.com/file/d/1KoEJ5x6aisxOpkhdNptsGUrL3yf4iy8b/view?usp=sharing) | [百度网盘](https://pan.baidu.com/s/1DpHUT5O5F0oXdSzWq7k8Ow?pwd=xwnk)
+4.13.**lite** - 2023.11.27 | [Google Drive](https://drive.google.com/file/d/1l3lH9QxQQeZVWtBpdB22jgJ-0kmGvXra/view?usp=sharing) | [百度网盘](https://pan.baidu.com/s/12arDG3wAG9soGBmzUkkbeQ?pwd=2fy8) || v4.12.2 - 2023.11.13 | [Google Drive](https://drive.google.com/file/d/1ZHrOBL217ItwdpUBcBtRE3XBD-yy-g2S/view?usp=share_link) | [百度网盘](https://pan.baidu.com/s/1zyAw-qZJsIsAyFOIZKumYQ?pwd=gwij) 
 
 v4.11.1 - 2023.11.11 | [Google Drive](https://drive.google.com/file/d/1Dwbp4qAeDVONPz2a10aC2a7-awD6TZvL/view?usp=share_link) | [百度网盘](https://pan.baidu.com/s/1TZiZuCHaG4SKmxKrqbbBDQ?pwd=pw2i) || v4.10.1 - 2023.11.09 [Google Drive](https://drive.google.com/file/d/1WNot1qYBt05LUyY1O9Uwwv5_K8U6t8_x/view?usp=sharing) | [百度网盘](https://pan.baidu.com/s/19niopL-Qwu2qOydIB1pEBg?pwd=88kv)
 
@@ -32,7 +32,7 @@ v4.3 - 2022.8.17 | [Google Drive](https://drive.google.com/file/d/1xrNofTGMHdt9s
 
 v3.8 - 2021.6.17 | [Google Drive](https://drive.google.com/file/d/1O5KfS3KzZCY3imeCr2LCsntLhutKuAqj/view?usp=sharing) | [百度网盘, 密码:kxr3](https://pan.baidu.com/s/1X-jpWBZWe-IQBoNAsxo2mA) || v3.1 - 2021.5.17 | [Google Drive](https://drive.google.com/file/d/1xn4R3TQyFhtMXN2pa3lRB8cd4E1zckQe/view?usp=sharing) | [百度网盘, 密码:64bz](https://pan.baidu.com/s/1W4p_Ni04HLI_jTy45sVodA) 
 
-[More Older Version](megvii-research/ECCV2022-RIFE#41 (comment))
+[More Older Version](https://github.com/megvii-research/ECCV2022-RIFE/issues/41)
 
 ### Installation
 
