@@ -24,7 +24,7 @@ python3 inference_video_enhance.py --video=demo.mp4
 ### Model List
 The content of these links is under the same MIT license as this project.
 
-4.13.1 - 2023.12.05 | [Google Drive](https://drive.google.com/file/d/15jHdCDJ3g6_E9EBeZ1vWZQzw_BXi6Vku/view?usp=sharing) | [百度网盘](https://pan.baidu.com/s/1jOA8DDjE17OSMQJMHd1mnQ?pwd=kg0q)
+4.13.1 - 2023.12.05 | [Google Drive](https://drive.google.com/file/d/1mj9lH6Be7ztYtHAr1xUUGT3hRtWJBy_5/view?usp=sharing) | [百度网盘](https://pan.baidu.com/s/1e0I-ERSYQThANP7BQmz3Vw?pwd=e2h8)
 
 4.13.**lite** - 2023.11.27 | [Google Drive](https://drive.google.com/file/d/1l3lH9QxQQeZVWtBpdB22jgJ-0kmGvXra/view?usp=sharing) | [百度网盘](https://pan.baidu.com/s/12arDG3wAG9soGBmzUkkbeQ?pwd=2fy8) || v4.12.2 - 2023.11.13 | [Google Drive](https://drive.google.com/file/d/1ZHrOBL217ItwdpUBcBtRE3XBD-yy-g2S/view?usp=share_link) | [百度网盘](https://pan.baidu.com/s/1zyAw-qZJsIsAyFOIZKumYQ?pwd=gwij) 
 
