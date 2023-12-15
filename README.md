@@ -1,4 +1,4 @@
-# Practical-RIFE 
+![image](https://github.com/hzwer/Practical-RIFE/assets/10103856/cc28d1ed-233f-4d06-bc65-c656755d30f4)# Practical-RIFE 
 **[V4.0 Promotional Video (宣传视频）](https://www.bilibili.com/video/BV1J3411t7qT?p=1&share_medium=iphone&share_plat=ios&share_session_id=7AE3DA72-D05C-43A0-9838-E2A80885BD4E&share_source=QQ&share_tag=s_i&timestamp=1639643780&unique_k=rjqO0EK)**
 
 2023.10-12 - We recently release new v4.7-4.13 models! 🎉
@@ -12,8 +12,11 @@ This project is based on [RIFE](https://github.com/hzwer/arXiv2020-RIFE) and [SA
 Thanks to [SVFI team](https://github.com/Justin62628/Squirrel-RIFE) to support model testing on Animation. 
 
 ## Video Enhancement
+<img width="710" alt="image" src="https://github.com/hzwer/Practical-RIFE/assets/10103856/d2df923b-5691-406f-987c-462f5e0af740">
+
 We are developing a practical model of [SAFA](https://github.com/megvii-research/WACV2024-SAFA). We encountered some difficulties in simulating real degradation. Here is a beta checkpoint and its [demo](https://www.youtube.com/watch?v=TvtrqNW_6RI) ([BiliBili](https://www.bilibili.com/video/BV1NN4117715/)).
 
+v0.3 - 2023.12.15 | [Google Drive](https://drive.google.com/file/d/16diYU99xRJmTgKAEzfjppwFWTRFxVitb/view?usp=sharing)
 v0.2 - 2023.12.11 | [Google Drive](https://drive.google.com/file/d/1IyJvz9qxCR59BW4q5PzOb6y3JRLnf9QE/view?usp=share_link) || v0.1 - 2023.11.27 | [Google Drive](https://drive.google.com/file/d/1Z4VcVxJ67zDYtddPPe2pSwMJId0KNV_I/view?usp=sharing)
 
 ```
