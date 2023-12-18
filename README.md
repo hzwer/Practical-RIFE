@@ -14,7 +14,7 @@ Thanks to [SVFI team](https://github.com/Justin62628/Squirrel-RIFE) to support m
 ## Video Enhancement
 <img width="710" alt="image" src="https://github.com/hzwer/Practical-RIFE/assets/10103856/d2df923b-5691-406f-987c-462f5e0af740">
 
-We are developing a practical model of [SAFA](https://github.com/megvii-research/WACV2024-SAFA). Welcome to check its [demo](https://www.youtube.com/watch?v=gq7CVj2QyfI) ([BiliBili](https://www.bilibili.com/video/BV1NN4117715/)) and provide advice.
+We are developing a practical model of [SAFA](https://github.com/megvii-research/WACV2024-SAFA). Welcome to check its [demo](https://www.youtube.com/watch?v=gq7CVj2QyfI) ([BiliBili](https://www.bilibili.com/video/BV1cb4y1V7cG/)) and provide advice.
 
 v0.4 - 2023.12.18 | [Google Drive](https://drive.google.com/file/d/1s95iCoiTUsQq7pZPWeSKtQSJAWeA-yOr/view?usp=share_link) || v0.3 - 2023.12.15 | [Google Drive](https://drive.google.com/file/d/16diYU99xRJmTgKAEzfjppwFWTRFxVitb/view?usp=sharing)
 
