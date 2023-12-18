@@ -14,9 +14,9 @@ Thanks to [SVFI team](https://github.com/Justin62628/Squirrel-RIFE) to support m
 ## Video Enhancement
 <img width="710" alt="image" src="https://github.com/hzwer/Practical-RIFE/assets/10103856/d2df923b-5691-406f-987c-462f5e0af740">
 
-We are developing a practical model of [SAFA](https://github.com/megvii-research/WACV2024-SAFA). We encountered some difficulties in simulating real degradation. Here is a beta checkpoint and its [demo](https://www.youtube.com/watch?v=TvtrqNW_6RI) ([BiliBili](https://www.bilibili.com/video/BV1NN4117715/)).
+We are developing a practical model of [SAFA](https://github.com/megvii-research/WACV2024-SAFA). Welcome to check its [demo](https://www.youtube.com/watch?v=gq7CVj2QyfI) ([BiliBili](https://www.bilibili.com/video/BV1NN4117715/)) and provide advice.
 
-v0.3 - 2023.12.15 | [Google Drive](https://drive.google.com/file/d/16diYU99xRJmTgKAEzfjppwFWTRFxVitb/view?usp=sharing) ||
+v0.4 - 2023.12.18 | [Google Drive](https://drive.google.com/file/d/1s95iCoiTUsQq7pZPWeSKtQSJAWeA-yOr/view?usp=share_link) || v0.3 - 2023.12.15 | [Google Drive](https://drive.google.com/file/d/16diYU99xRJmTgKAEzfjppwFWTRFxVitb/view?usp=sharing)
 
 v0.2 - 2023.12.11 | [Google Drive](https://drive.google.com/file/d/1IyJvz9qxCR59BW4q5PzOb6y3JRLnf9QE/view?usp=share_link) || v0.1 - 2023.11.27 | [Google Drive](https://drive.google.com/file/d/1Z4VcVxJ67zDYtddPPe2pSwMJId0KNV_I/view?usp=sharing)
 
