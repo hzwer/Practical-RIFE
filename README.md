@@ -11,22 +11,6 @@ This project is based on [RIFE](https://github.com/hzwer/arXiv2020-RIFE) and [SA
 
 Thanks to [SVFI team](https://github.com/Justin62628/Squirrel-RIFE) to support model testing on Animation. 
 
-## Video Enhancement
-
-<img width="710" alt="image" src="https://github.com/hzwer/Practical-RIFE/assets/10103856/5bae134c-0747-4084-bbab-37b1595352f1">
-
-We are developing a practical model of [SAFA](https://github.com/megvii-research/WACV2024-SAFA). Welcome to check its [demo](https://www.youtube.com/watch?v=QII2KQSBBwk) ([BiliBili](https://www.bilibili.com/video/BV1Up4y1d7kF/)) and provide advice.
-
-v0.5 - 2023.12.26 | [Google Drive](https://drive.google.com/file/d/1OLO9hLV97ZQ4uRV2-aQqgnwhbKMMt6TX/view?usp=sharing)
-
-v0.4 - 2023.12.18 | [Google Drive](https://drive.google.com/file/d/1s95iCoiTUsQq7pZPWeSKtQSJAWeA-yOr/view?usp=share_link) || v0.3 - 2023.12.15 | [Google Drive](https://drive.google.com/file/d/16diYU99xRJmTgKAEzfjppwFWTRFxVitb/view?usp=sharing)
-
-v0.2 - 2023.12.11 | [Google Drive](https://drive.google.com/file/d/1IyJvz9qxCR59BW4q5PzOb6y3JRLnf9QE/view?usp=share_link) || v0.1 - 2023.11.27 | [Google Drive](https://drive.google.com/file/d/1Z4VcVxJ67zDYtddPPe2pSwMJId0KNV_I/view?usp=sharing)
-
-```
-python3 inference_video_enhance.py --video=demo.mp4
-```
-
 ## Frame Interpolation
 ### Model List
 The content of these links is under the same MIT license as this project.
@@ -74,24 +58,25 @@ python3 inference_video.py --multi=2 --video=video.mp4 --scale=0.5
 python3 inference_video.py ---multi=4 --img=input/
 ```
 (to read video from pngs, like input/0.png ... input/612.png, ensure that the png names are numbers)
-```
-python3 inference_video.py --multi=3 --video=video.mp4 --fps=60
-```
-(add slomo effect, the audio will be removed)
 
 ### Model training
 The whole repo can be downloaded from [v4.0](https://drive.google.com/file/d/1zoSz7b8c6kUsnd4gYZ_6TrKxa7ghHJWW/view?usp=sharing), [v4.12](https://drive.google.com/file/d/1IHB35zhO4rr-JSMnpRvHhU9U65Z4giWv/view?usp=sharing). However, we currently do not have the time to organize it well, it is for reference only.
 
-### To-do List
-Multi-frame input of the model
+## Video Enhancement
 
-Frame interpolation at any time location (Done)
+<img width="710" alt="image" src="https://github.com/hzwer/Practical-RIFE/assets/10103856/5bae134c-0747-4084-bbab-37b1595352f1">
 
-Eliminate artifacts as much as possible
+We are developing a practical model of [SAFA](https://github.com/megvii-research/WACV2024-SAFA). Welcome to check its [demo](https://www.youtube.com/watch?v=QII2KQSBBwk) ([BiliBili](https://www.bilibili.com/video/BV1Up4y1d7kF/)) and provide advice.
 
-Make the model applicable under any resolution input
+v0.5 - 2023.12.26 | [Google Drive](https://drive.google.com/file/d/1OLO9hLV97ZQ4uRV2-aQqgnwhbKMMt6TX/view?usp=sharing)
 
-Provide models with lower calculation consumption
+v0.4 - 2023.12.18 | [Google Drive](https://drive.google.com/file/d/1s95iCoiTUsQq7pZPWeSKtQSJAWeA-yOr/view?usp=share_link) || v0.3 - 2023.12.15 | [Google Drive](https://drive.google.com/file/d/16diYU99xRJmTgKAEzfjppwFWTRFxVitb/view?usp=sharing)
+
+v0.2 - 2023.12.11 | [Google Drive](https://drive.google.com/file/d/1IyJvz9qxCR59BW4q5PzOb6y3JRLnf9QE/view?usp=share_link) || v0.1 - 2023.11.27 | [Google Drive](https://drive.google.com/file/d/1Z4VcVxJ67zDYtddPPe2pSwMJId0KNV_I/view?usp=sharing)
+
+```
+python3 inference_video_enhance.py --video=demo.mp4
+```
 
 ## Citation
 
