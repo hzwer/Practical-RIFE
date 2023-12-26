@@ -1,4 +1,4 @@
-# Practical-RIFE 
+![image](https://github.com/hzwer/Practical-RIFE/assets/10103856/63be03d2-6753-4a85-addd-af0667ea71a6)# Practical-RIFE 
 **[V4.0 Promotional Video (宣传视频）](https://www.bilibili.com/video/BV1J3411t7qT?p=1&share_medium=iphone&share_plat=ios&share_session_id=7AE3DA72-D05C-43A0-9838-E2A80885BD4E&share_source=QQ&share_tag=s_i&timestamp=1639643780&unique_k=rjqO0EK)**
 
 2023.10-12 - We recently release new v4.7-4.13 models! 🎉
@@ -12,9 +12,12 @@ This project is based on [RIFE](https://github.com/hzwer/arXiv2020-RIFE) and [SA
 Thanks to [SVFI team](https://github.com/Justin62628/Squirrel-RIFE) to support model testing on Animation. 
 
 ## Video Enhancement
-<img width="710" alt="image" src="https://github.com/hzwer/Practical-RIFE/assets/10103856/d2df923b-5691-406f-987c-462f5e0af740">
+
+<img width="710" alt="image" src="https://github.com/hzwer/Practical-RIFE/assets/10103856/5bae134c-0747-4084-bbab-37b1595352f1">
 
 We are developing a practical model of [SAFA](https://github.com/megvii-research/WACV2024-SAFA). Welcome to check its [demo](https://www.youtube.com/watch?v=gq7CVj2QyfI) ([BiliBili](https://www.bilibili.com/video/BV1cb4y1V7cG/)) and provide advice.
+
+v0.5 - 2023.12.26 | [Google Drive](https://drive.google.com/file/d/1OLO9hLV97ZQ4uRV2-aQqgnwhbKMMt6TX/view?usp=sharing)
 
 v0.4 - 2023.12.18 | [Google Drive](https://drive.google.com/file/d/1s95iCoiTUsQq7pZPWeSKtQSJAWeA-yOr/view?usp=share_link) || v0.3 - 2023.12.15 | [Google Drive](https://drive.google.com/file/d/16diYU99xRJmTgKAEzfjppwFWTRFxVitb/view?usp=sharing)
 
