@@ -1,5 +1,7 @@
 # Practical-RIFE 
-**[V4.0 Promotional Video (宣传视频）](https://www.bilibili.com/video/BV1J3411t7qT?p=1&share_medium=iphone&share_plat=ios&share_session_id=7AE3DA72-D05C-43A0-9838-E2A80885BD4E&share_source=QQ&share_tag=s_i&timestamp=1639643780&unique_k=rjqO0EK)**
+**[V4.0 Promotional Video (宣传视频）](https://www.bilibili.com/video/BV1J3411t7qT?p=1&share_medium=iphone&share_plat=ios&share_session_id=7AE3DA72-D05C-43A0-9838-E2A80885BD4E&share_source=QQ&share_tag=s_i&timestamp=1639643780&unique_k=rjqO0EK)**  
+
+  **Use this project on Google Colab for free! Check out the [Practical-RIFE Colab Notebook](https://colab.research.google.com/drive/1BZmGSq15O4ZU5vPfzkv7jFNYahTm6qwT?usp=sharing).** 
 
 2023.10-12 - We recently release new v4.7-4.13 models! 🎉
 
@@ -58,6 +60,8 @@ python3 inference_video.py --multi=2 --video=video.mp4 --scale=0.5
 python3 inference_video.py ---multi=4 --img=input/
 ```
 (to read video from pngs, like input/0.png ... input/612.png, ensure that the png names are numbers)
+ 
+
 
 ### Model training
 The whole repo can be downloaded from [v4.0](https://drive.google.com/file/d/1zoSz7b8c6kUsnd4gYZ_6TrKxa7ghHJWW/view?usp=sharing), [v4.12](https://drive.google.com/file/d/1IHB35zhO4rr-JSMnpRvHhU9U65Z4giWv/view?usp=sharing). However, we currently do not have the time to organize it well, it is for reference only.
