@@ -59,7 +59,8 @@ python3 inference_video.py ---multi=4 --img=input/
 ```
 (to read video from pngs, like input/0.png ... input/612.png, ensure that the png names are numbers)
 
-**Use this project on Google Colab for free! Check out the [Practical-RIFE Colab Notebook](https://colab.research.google.com/drive/1BZmGSq15O4ZU5vPfzkv7jFNYahTm6qwT?usp=sharing).**
+###Use this project on Google Colab for free!
+**Check out the [Practical-RIFE Colab Notebook](https://colab.research.google.com/drive/1BZmGSq15O4ZU5vPfzkv7jFNYahTm6qwT?usp=sharing).**
 
 ### Model training
 The whole repo can be downloaded from [v4.0](https://drive.google.com/file/d/1zoSz7b8c6kUsnd4gYZ_6TrKxa7ghHJWW/view?usp=sharing), [v4.12](https://drive.google.com/file/d/1IHB35zhO4rr-JSMnpRvHhU9U65Z4giWv/view?usp=sharing). However, we currently do not have the time to organize it well, it is for reference only.
