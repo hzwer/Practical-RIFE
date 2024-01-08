@@ -3,7 +3,7 @@
 
   **Use this project on Google Colab for free! Check out the [Practical-RIFE Colab Notebook](https://colab.research.google.com/drive/1BZmGSq15O4ZU5vPfzkv7jFNYahTm6qwT?usp=sharing).** 
 
-2023.10-12 - We recently release new v4.7-4.13 models! 🎉
+2024.01 - We recently release new v4.7-4.14 models. In our tests, 4.14 makes a great improvement for animation scenes. 🎉
 
 <img width="710" alt="image" src="https://github.com/hzwer/Practical-RIFE/assets/10103856/e692b6f0-ff1a-45f7-8cd7-2bd3e6919ec5">
 
@@ -16,8 +16,6 @@ Thanks to [SVFI team](https://github.com/Justin62628/Squirrel-RIFE) to support m
 ## Frame Interpolation
 ### Model List
 The content of these links is under the same MIT license as this project.
-
-In our tests, 4.14 makes a great improvement for animation scenes.
 
 4.14 - 2024.01.08 ｜ [Google Drive](https://drive.google.com/file/d/1BjuEY7CHZv1wzmwXSQP9ZTj0mLWu_4xy/view?usp=share_link) | [百度网盘](https://pan.baidu.com/s/1d-W64lRsJTqNsgWoXYiaWQ?pwd=xawa) || 4.13.1 - 2023.12.05 | [Google Drive](https://drive.google.com/file/d/1mj9lH6Be7ztYtHAr1xUUGT3hRtWJBy_5/view?usp=sharing) | [百度网盘](https://pan.baidu.com/s/1e0I-ERSYQThANP7BQmz3Vw?pwd=e2h8)
 
