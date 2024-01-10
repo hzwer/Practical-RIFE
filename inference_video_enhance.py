@@ -77,7 +77,7 @@ if torch.cuda.is_available():
         torch.set_default_tensor_type(torch.cuda.HalfTensor)
 
 try:
-    from train_log.model import Model
+    from train_log_SAFA.model import Model
 except:
     print("Please download our model from model list")
 model = Model()
