@@ -74,10 +74,6 @@ We are developing a practical model of [SAFA](https://github.com/megvii-research
 
 v0.5 - 2023.12.26 | [Google Drive](https://drive.google.com/file/d/1OLO9hLV97ZQ4uRV2-aQqgnwhbKMMt6TX/view?usp=sharing)
 
-v0.4 - 2023.12.18 | [Google Drive](https://drive.google.com/file/d/1s95iCoiTUsQq7pZPWeSKtQSJAWeA-yOr/view?usp=share_link) || v0.3 - 2023.12.15 | [Google Drive](https://drive.google.com/file/d/16diYU99xRJmTgKAEzfjppwFWTRFxVitb/view?usp=sharing)
-
-v0.2 - 2023.12.11 | [Google Drive](https://drive.google.com/file/d/1IyJvz9qxCR59BW4q5PzOb6y3JRLnf9QE/view?usp=share_link) || v0.1 - 2023.11.27 | [Google Drive](https://drive.google.com/file/d/1Z4VcVxJ67zDYtddPPe2pSwMJId0KNV_I/view?usp=sharing)
-
 ```
 python3 inference_video_enhance.py --video=demo.mp4
 ```
