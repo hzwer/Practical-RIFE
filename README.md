@@ -15,11 +15,11 @@ Thanks to [SVFI team](https://github.com/Justin62628/Squirrel-RIFE) to support m
 
 ## Frame Interpolation
 ### Model List
-The content of these links is under the same MIT license as this project.
+The content of these links is under the same MIT license as this project. **lite** means using similar training framework, but lower computational cost model.
 
-4.14 - 2024.01.08 ｜ [Google Drive](https://drive.google.com/file/d/1BjuEY7CHZv1wzmwXSQP9ZTj0mLWu_4xy/view?usp=share_link) | [百度网盘](https://pan.baidu.com/s/1d-W64lRsJTqNsgWoXYiaWQ?pwd=xawa) || 4.13.1 - 2023.12.05 | [Google Drive](https://drive.google.com/file/d/1mj9lH6Be7ztYtHAr1xUUGT3hRtWJBy_5/view?usp=sharing) | [百度网盘](https://pan.baidu.com/s/1e0I-ERSYQThANP7BQmz3Vw?pwd=e2h8)
+4.14 - 2024.01.08 ｜ [Google Drive](https://drive.google.com/file/d/1BjuEY7CHZv1wzmwXSQP9ZTj0mLWu_4xy/view?usp=share_link) | [百度网盘](https://pan.baidu.com/s/1d-W64lRsJTqNsgWoXYiaWQ?pwd=xawa) | [4.14.lite](https://drive.google.com/file/d/1eULia_onOtRXHMAW9VeDL8N2_7z8J1ba/view?usp=share_link)
 
-4.13.**lite** - 2023.11.27 | [Google Drive](https://drive.google.com/file/d/1l3lH9QxQQeZVWtBpdB22jgJ-0kmGvXra/view?usp=sharing) | [百度网盘](https://pan.baidu.com/s/12arDG3wAG9soGBmzUkkbeQ?pwd=2fy8) || v4.12.2 - 2023.11.13 | [Google Drive](https://drive.google.com/file/d/1ZHrOBL217ItwdpUBcBtRE3XBD-yy-g2S/view?usp=share_link) | [百度网盘](https://pan.baidu.com/s/1zyAw-qZJsIsAyFOIZKumYQ?pwd=gwij) 
+4.13.1 - 2023.12.05 | [Google Drive](https://drive.google.com/file/d/1mj9lH6Be7ztYtHAr1xUUGT3hRtWJBy_5/view?usp=sharing) | [百度网盘](https://pan.baidu.com/s/1e0I-ERSYQThANP7BQmz3Vw?pwd=e2h8) | [4.13.lite](https://drive.google.com/file/d/1l3lH9QxQQeZVWtBpdB22jgJ-0kmGvXra/view?usp=sharing) || v4.12.2 - 2023.11.13 | [Google Drive](https://drive.google.com/file/d/1ZHrOBL217ItwdpUBcBtRE3XBD-yy-g2S/view?usp=share_link) | [百度网盘](https://pan.baidu.com/s/1zyAw-qZJsIsAyFOIZKumYQ?pwd=gwij) 
 
 v4.11.1 - 2023.11.11 | [Google Drive](https://drive.google.com/file/d/1Dwbp4qAeDVONPz2a10aC2a7-awD6TZvL/view?usp=share_link) | [百度网盘](https://pan.baidu.com/s/1TZiZuCHaG4SKmxKrqbbBDQ?pwd=pw2i) || v4.10.1 - 2023.11.09 [Google Drive](https://drive.google.com/file/d/1WNot1qYBt05LUyY1O9Uwwv5_K8U6t8_x/view?usp=sharing) | [百度网盘](https://pan.baidu.com/s/19niopL-Qwu2qOydIB1pEBg?pwd=88kv)
 
