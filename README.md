@@ -96,7 +96,7 @@ python3 inference_video_enhance.py --video=demo.mp4
   year={2024}
 }
 ```
-
+...
 ## Reference
 
 Optical Flow:
