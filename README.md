@@ -57,10 +57,30 @@ python3 inference_video.py --multi=2 --video=video.mp4 --scale=0.5
 ```
 (If your video has high resolution, such as 4K, we recommend set --scale=0.5 (default 1.0))
 ```
-python3 inference_video.py ---multi=4 --img=input/
+python3 inference_video.py --multi=4 --img=input/
 ```
 (to read video from pngs, like input/0.png ... input/612.png, ensure that the png names are numbers)
- 
+Parameter descriptions:
+
+--img / --video: The input file address
+
+--output: Output video name 'xxx.mp4'
+
+--model: Directory with trained model files
+
+--UHD: It is equivalent to setting scale=0.5
+
+--montage: Splice the generated video with the original video, like [this demo](https://www.youtube.com/watch?v=kUQ7KK6MhHw)
+
+--fps: Set output FPS manually
+
+--ext: Set output video format, default: mp4
+
+--multi: Interpolation frame rate multiplier
+
+--exp: Set --multi to 2^(--exp)
+
+--skip: It's no longer useful refer to [issue 207](https://github.com/hzwer/ECCV2022-RIFE/issues/207)
 
 
 ### Model training
