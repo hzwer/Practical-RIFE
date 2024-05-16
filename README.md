@@ -60,6 +60,7 @@ python3 inference_video.py --multi=2 --video=video.mp4 --scale=0.5
 python3 inference_video.py --multi=4 --img=input/
 ```
 (to read video from pngs, like input/0.png ... input/612.png, ensure that the png names are numbers)
+
 Parameter descriptions:
 
 --img / --video: The input file address
