@@ -23,7 +23,7 @@ def run_upsample(video_path: str, output_path: str, interpolate_multiplier: int)
     if not hasattr(model, "version"):
         model.version = 0
 
-    dir_path = os.path.dirname(os.path.realpath(__file__))
+    dir_path = os.path.dirname(__file__)
     model_path = Path(dir_path) / "train_log"
 
     model.load_model(model_path, -1)
