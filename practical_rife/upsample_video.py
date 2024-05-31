@@ -12,6 +12,7 @@ from queue import Queue, Empty
 from practical_rife.pytorch_msssim import ssim_matlab
 from practical_rife.train_log.RIFE_HDv3 import Model
 from practical_rife.utils import transferAudio
+from pathlib import Path
 
 warnings.filterwarnings("ignore")
 
@@ -22,7 +23,10 @@ def run_upsample(video_path: str, output_path: str, interpolate_multiplier: int)
     if not hasattr(model, "version"):
         model.version = 0
 
-    model.load_model("practical_rife/train_log", -1)
+    dir_path = os.path.dirname(os.path.realpath(__file__))
+    model_path = Path(dir_path) / "train_log"
+
+    model.load_model(model_path, -1)
     print("Loaded 3.x/4.x HD model.")
     model.eval()
     model.device()
