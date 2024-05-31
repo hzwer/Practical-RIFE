@@ -5,8 +5,16 @@ requires = [
 ]
 build-backend = 'setuptools.build_meta'
 
+[tool.setuptools]
+include-package-data = false
+
+[tool.setuptools.packages.find]
+include = ["practical_rife*"]
+exclude = ["test_vids*", "tests*"]
+
 [project]
 name = "practical_rife"
+version = "0.0.1"
 
 dependencies = [
     "numpy>=1.16, <=1.23.5",
