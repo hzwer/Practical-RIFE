@@ -10,6 +10,7 @@ import _thread
 import skvideo.io
 from queue import Queue, Empty
 from practical_rife.pytorch_msssim import ssim_matlab
+from practical_rife.train_log.RIFE_HDv3 import Model
 
 warnings.filterwarnings("ignore")
 
@@ -89,7 +90,7 @@ parser.add_argument(
     "--model",
     dest="modelDir",
     type=str,
-    default="train_log",
+    default="practical_rife/train_log",
     help="directory with trained model files",
 )
 parser.add_argument(
@@ -141,13 +142,10 @@ if torch.cuda.is_available():
     if args.fp16:
         torch.set_default_tensor_type(torch.cuda.HalfTensor)
 
-try:
-    from practical_rife.train_log.RIFE_HDv3 import Model
-except:
-    print("Please download our model from model list")
 model = Model()
 if not hasattr(model, "version"):
     model.version = 0
+
 model.load_model(args.modelDir, -1)
 print("Loaded 3.x/4.x HD model.")
 model.eval()
