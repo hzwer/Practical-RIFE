@@ -8,6 +8,9 @@ build-backend = 'setuptools.build_meta'
 [tool.setuptools]
 include-package-data = true
 
+[tool.setuptools.package-data]
+'src' = ['practical_rife/train_log/*.pkl']
+
 [tool.setuptools.packages.find]
 include = ["practical_rife*"]
 exclude = ["test_vids*", "tests*"]
