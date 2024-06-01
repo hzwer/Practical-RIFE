@@ -9,11 +9,8 @@ build-backend = 'setuptools.build_meta'
 name = "practical_rife"
 version = "0.0.1"
 
-[tool.setuptools]
-package-dir = {"" = "."}
-
 [tool.setuptools.packages.find]
-where = ["practical_rife"] # <-- this changed
+where = ["src"] # <-- this changed
 
 [tool.setuptools.package-data]
 "*" = ["*.*"] # <-- this changed
