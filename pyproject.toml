@@ -9,13 +9,6 @@ build-backend = 'setuptools.build_meta'
 name = "practical_rife"
 version = "0.0.1"
 
-[tool.setuptools.packages.find]
-where = ["src"] # <-- this changed
-
-[tool.setuptools.package-data]
-"*" = ["*.*"] # <-- this changed
-
-[tool.poetry.dependencies]
 dependencies = [
     "numpy>=1.16, <=1.23.5",
     "tqdm>=4.35.0",
@@ -25,3 +18,10 @@ dependencies = [
     "moviepy>=1.0.3",
     "torchvision>=0.7.0",
 ]
+
+[tool.setuptools.packages.find]
+where = ["src"] # <-- this changed
+
+[tool.setuptools.package-data]
+"*" = ["*.*"] # <-- this changed
+

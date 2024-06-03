@@ -11,6 +11,7 @@ src/practical_rife/warplayer.py
 src/practical_rife.egg-info/PKG-INFO
 src/practical_rife.egg-info/SOURCES.txt
 src/practical_rife.egg-info/dependency_links.txt
+src/practical_rife.egg-info/requires.txt
 src/practical_rife.egg-info/top_level.txt
 src/practical_rife/train_log/IFNet_HDv3.py
 src/practical_rife/train_log/RIFE_HDv3.py
