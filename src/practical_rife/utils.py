@@ -1,24 +1,26 @@
 import os
 import shutil
+from pathlib import Path
 
 
 def transferAudio(sourceVideo, targetVideo):
 
-    tempAudioFileName = "./temp/audio.mkv"
+    source_video_parent = Path(sourceVideo).parent
+
+    temp_folder = source_video_parent / "temp"
+    tempAudioFileName = source_video_parent / "temp/audio.mkv"
 
     # split audio from original video file and store in "temp" directory
-    if True:
-
-        # clear old "temp" directory if it exits
-        if os.path.isdir("temp"):
-            # remove temp directory
-            shutil.rmtree("temp")
-        # create new "temp" directory
-        os.makedirs("temp")
-        # extract audio from video
-        os.system(
-            'ffmpeg -y -i "{}" -c:a copy -vn {}'.format(sourceVideo, tempAudioFileName)
-        )
+    # clear old "temp" directory if it exits
+    if os.path.isdir(temp_folder):
+        # remove temp directory
+        shutil.rmtree(temp_folder)
+    # create new "temp" directory
+    os.makedirs(temp_folder)
+    # extract audio from video
+    os.system(
+        'ffmpeg -y -i "{}" -c:a copy -vn {}'.format(sourceVideo, tempAudioFileName)
+    )
 
     print(targetVideo)
 
@@ -36,7 +38,7 @@ def transferAudio(sourceVideo, targetVideo):
     if (
         os.path.getsize(targetVideo) == 0
     ):  # if ffmpeg failed to merge the video and audio together try converting the audio to aac
-        tempAudioFileName = "./temp/audio.m4a"
+        tempAudioFileName = source_video_parent / "temp/audio.m4a"
         os.system(
             'ffmpeg -y -i "{}" -c:a aac -b:a 160k -vn {}'.format(
                 sourceVideo, tempAudioFileName
@@ -63,4 +65,4 @@ def transferAudio(sourceVideo, targetVideo):
         os.remove(targetNoAudio)
 
     # remove temp directory
-    shutil.rmtree("temp")
+    shutil.rmtree(temp_folder)
