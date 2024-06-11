@@ -13,3 +13,4 @@ test/
 *.zip
 
 test_vids
+*.egg-info/

@@ -14,27 +14,23 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 
 class Model:
-    def __init__(self, local_rank=-1):
-        self.flownet = IFNet()
-        self.device()
+    def __init__(self, device, local_rank=-1):
+        self.flownet = IFNet(device)
+        self.device(device)
         self.optimG = AdamW(self.flownet.parameters(), lr=1e-6, weight_decay=1e-4)
         self.epe = EPE()
         self.version = 4.8
         # self.vgg = VGGPerceptualLoss().to(device)
         self.sobel = SOBEL()
-        if local_rank != -1:
-            self.flownet = DDP(
-                self.flownet, device_ids=[local_rank], output_device=local_rank
-            )
-
+        
     def train(self):
         self.flownet.train()
 
     def eval(self):
         self.flownet.eval()
 
-    def device(self):
-        self.flownet.to(device)
+    def device(self, model_device=device):
+        self.flownet.to(model_device)
 
     def load_model(self, path, rank=0):
         def convert(param):

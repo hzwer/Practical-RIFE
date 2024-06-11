@@ -118,7 +118,7 @@ class IFBlock(nn.Module):
 
 
 class IFNet(nn.Module):
-    def __init__(self):
+    def __init__(self, device):
         super(IFNet, self).__init__()
         self.block0 = IFBlock(7 + 16, c=192)
         self.block1 = IFBlock(8 + 4 + 16, c=128)
@@ -127,6 +127,7 @@ class IFNet(nn.Module):
         self.encode = Head()
         # self.contextnet = Contextnet()
         # self.unet = Unet()
+        self.device=device
 
     def forward(
         self,
@@ -172,8 +173,8 @@ class IFNet(nn.Module):
                     flow = (flow + torch.cat((f_[:, 2:4], f_[:, :2]), 1)) / 2
                     mask = (mask + (-m_)) / 2
             else:
-                wf0 = warp(f0, flow[:, :2])
-                wf1 = warp(f1, flow[:, 2:4])
+                wf0 = warp(f0, flow[:, :2], self.device)
+                wf1 = warp(f1, flow[:, 2:4], self.device)
                 fd, m0 = block[i](
                     torch.cat(
                         (
@@ -212,8 +213,8 @@ class IFNet(nn.Module):
                 flow = flow + fd
             mask_list.append(mask)
             flow_list.append(flow)
-            warped_img0 = warp(img0, flow[:, :2])
-            warped_img1 = warp(img1, flow[:, 2:4])
+            warped_img0 = warp(img0, flow[:, :2], self.device)
+            warped_img1 = warp(img1, flow[:, 2:4], self.device)
             merged.append((warped_img0, warped_img1))
         mask = torch.sigmoid(mask)
         merged[3] = warped_img0 * mask + warped_img1 * (1 - mask)

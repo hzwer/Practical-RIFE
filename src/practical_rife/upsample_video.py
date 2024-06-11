@@ -17,9 +17,9 @@ from pathlib import Path
 warnings.filterwarnings("ignore")
 
 
-def run_upsample(video_path: str, output_path: str, interpolate_multiplier: int):
+def run_upsample(video_path: str, output_path: str, interpolate_multiplier: int, device="cuda"):
 
-    model = Model()
+    model = Model(device)
     if not hasattr(model, "version"):
         model.version = 0
 
@@ -29,7 +29,7 @@ def run_upsample(video_path: str, output_path: str, interpolate_multiplier: int)
     model.load_model(model_path, -1)
     print("Loaded 3.x/4.x HD model.")
     model.eval()
-    model.device()
+    model.device(device)
 
     videoCapture = cv2.VideoCapture(video_path)
     fps = videoCapture.get(cv2.CAP_PROP_FPS)
@@ -93,8 +93,6 @@ def run_upsample(video_path: str, output_path: str, interpolate_multiplier: int)
     _thread.start_new_thread(build_read_buffer, (read_buffer, videogen))
     _thread.start_new_thread(clear_write_buffer, (write_buffer,))
 
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-
     I1 = (
         torch.from_numpy(np.transpose(lastframe, (2, 0, 1)))
         .to(device, non_blocking=True)
@@ -142,7 +140,7 @@ def run_upsample(video_path: str, output_path: str, interpolate_multiplier: int)
                 / 255.0
             )
             I1 = pad_image(I1)
-            I1 = model.inference(I0, I1, scale)
+            I1 = model.inference(I0, I1, 0.5, scale)
             I1_small = F.interpolate(I1, (32, 32), mode="bilinear", align_corners=False)
             ssim = ssim_matlab(I0_small[:, :3], I1_small[:, :3])
             frame = (I1[0] * 255).byte().cpu().numpy().transpose(1, 2, 0)[:h, :w]
