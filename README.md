@@ -17,7 +17,7 @@ Thanks to [SVFI team](https://github.com/Justin62628/Squirrel-RIFE) to support m
 ### Model List
 The content of these links is under the same MIT license as this project. **lite** means using similar training framework, but lower computational cost model.
 
-4.19 (Add [SportsSlomo](https://github.com/neu-vi/SportsSloMo/tree/main)) - 2024.07.12 | [Google Drive](https://drive.google.com/file/d/1Wf09iMyTrvVdG7oG3blVAEHDdLU2dhW2/view?usp=share_link) | [百度网盘](https://pan.baidu.com/s/1AUKopimjBXV0alLqdky-og?pwd=1rpv) || 4.18 - 2024.07.03 | [Google Drive](https://drive.google.com/file/d/1octn-UVuEjXa_HlsIUbNeLTTvYCKbC_s/view?usp=sharing) | [百度网盘](https://pan.baidu.com/s/1fqtxJyXSgUx-gE3rieuKxg?pwd=udr1)
+4.19beta (Add [SportsSlomo](https://github.com/neu-vi/SportsSloMo/tree/main)) - 2024.07.12 | [Google Drive](https://drive.google.com/file/d/1Wf09iMyTrvVdG7oG3blVAEHDdLU2dhW2/view?usp=share_link) | [百度网盘](https://pan.baidu.com/s/1AUKopimjBXV0alLqdky-og?pwd=1rpv) || 4.18 - 2024.07.03 | [Google Drive](https://drive.google.com/file/d/1octn-UVuEjXa_HlsIUbNeLTTvYCKbC_s/view?usp=sharing) | [百度网盘](https://pan.baidu.com/s/1fqtxJyXSgUx-gE3rieuKxg?pwd=udr1)
 
 4.17 - 2024.05.24 | [Google Drive](https://drive.google.com/file/d/1962p_lEWo_kLTEynarNaRYRNVdaiQG2k/view?usp=share_link) | [百度网盘](https://pan.baidu.com/s/1bMzTYoJKZXsoxuSBmzj6VQ?pwd=as37) : Add gram loss from [FILM](https://github.com/google-research/frame-interpolation/blob/69f8708f08e62c2edf46a27616a4bfcf083e2076/losses/vgg19_loss.py) || [4.17.lite](https://drive.google.com/file/d/1e9Qb4rm20UAsO7h9VILDwrpvTSHWWW8b/view?usp=share_link)
 
