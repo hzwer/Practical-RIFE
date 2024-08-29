@@ -13,6 +13,8 @@ This project is based on [RIFE](https://github.com/hzwer/arXiv2020-RIFE) and [SA
 
 Thanks to [SVFI team](https://github.com/Justin62628/Squirrel-RIFE) to support model testing on Animation. 
 
+[VapourSynth-RIFE](https://github.com/HolyWu/vs-rife) | [RIFE-ncnn-vulkan](https://github.com/nihui/rife-ncnn-vulkan) | [VapourSynth-RIFE-ncnn-Vulkan](https://github.com/styler00dollar/VapourSynth-RIFE-ncnn-Vulkan) | [vs-mlrt](https://github.com/AmusementClub/vs-mlrt)
+
 ## Frame Interpolation
 ### Model List
 The content of these links is under the same MIT license as this project. **lite** means using similar training framework, but lower computational cost model.
