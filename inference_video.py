@@ -241,7 +241,7 @@ while True:
         
     if ssim < 0.2:
         output = []
-        for i in range(args.multi - 1):
+        for i in range(args.multi):
             output.append(I0)
         '''
         output = []
@@ -253,7 +253,7 @@ while True:
             output.append(torch.from_numpy(np.transpose((cv2.addWeighted(frame[:, :, ::-1], alpha, lastframe[:, :, ::-1], beta, 0)[:, :, ::-1].copy()), (2,0,1))).to(device, non_blocking=True).unsqueeze(0).float() / 255.)
         '''
     else:
-        output = make_inference(I0, I1, args.multi-1)
+        output = make_inference(I0, I1, args.multi)
 
     if args.montage:
         write_buffer.put(np.concatenate((lastframe, lastframe), 1))
