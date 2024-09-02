@@ -108,7 +108,7 @@ if not args.video is None:
     videoCapture.release()
     if args.fps is None:
         fpsNotAssigned = True
-        args.fps = fps * args.multi
+        args.fps = fps * (args.multi - 1)
     else:
         fpsNotAssigned = False
     videogen = skvideo.io.vreader(args.video)
@@ -234,7 +234,7 @@ while True:
             temp = frame
         I1 = torch.from_numpy(np.transpose(frame, (2,0,1))).to(device, non_blocking=True).unsqueeze(0).float() / 255.
         I1 = pad_image(I1)
-        I1 = model.inference(I0, I1, args.scale)
+        I1 = model.inference(I0, I1, scale=args.scale)
         I1_small = F.interpolate(I1, (32, 32), mode='bilinear', align_corners=False)
         ssim = ssim_matlab(I0_small[:, :3], I1_small[:, :3])
         frame = (I1[0] * 255).byte().cpu().numpy().transpose(1, 2, 0)[:h, :w]
@@ -253,7 +253,7 @@ while True:
             output.append(torch.from_numpy(np.transpose((cv2.addWeighted(frame[:, :, ::-1], alpha, lastframe[:, :, ::-1], beta, 0)[:, :, ::-1].copy()), (2,0,1))).to(device, non_blocking=True).unsqueeze(0).float() / 255.)
         '''
     else:
-        output = make_inference(I0, I1, args.multi-1)
+        output = make_inference(I0, I1, args.multi - 1)
 
     if args.montage:
         write_buffer.put(np.concatenate((lastframe, lastframe), 1))
