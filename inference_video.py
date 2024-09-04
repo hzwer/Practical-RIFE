@@ -89,10 +89,7 @@ if torch.cuda.is_available():
     if(args.fp16):
         torch.set_default_tensor_type(torch.cuda.HalfTensor)
 
-try:
-    from train_log.RIFE_HDv3 import Model
-except:
-    print("Please download our model from model list")
+from train_log.RIFE_HDv3 import Model
 model = Model()
 if not hasattr(model, 'version'):
     model.version = 0
