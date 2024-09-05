@@ -3,7 +3,7 @@
 
   **Use this project on Google Colab for free! Check out the [Practical-RIFE Colab Notebook](https://colab.research.google.com/drive/1BZmGSq15O4ZU5vPfzkv7jFNYahTm6qwT?usp=sharing).** 
 
-2024.01 - We recently release new v4.7-4.14 models. In our tests, 4.14 makes a great improvement for animation scenes. 🎉
+2024.08 - We find that 4.22.lite is quite suitable for post-processing of some diffusion model generated videos. For example, it can increase the original 15fps to 60fps.
 
 <img width="710" alt="image" src="https://github.com/hzwer/Practical-RIFE/assets/10103856/e692b6f0-ff1a-45f7-8cd7-2bd3e6919ec5">
 
