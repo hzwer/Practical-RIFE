@@ -3,7 +3,7 @@
 
   **Use this project on Google Colab for free! Check out the [Practical-RIFE Colab Notebook](https://colab.research.google.com/drive/1BZmGSq15O4ZU5vPfzkv7jFNYahTm6qwT?usp=sharing).** 
 
-2024.08 - We find that 4.22.lite is quite suitable for post-processing of some diffusion model generated videos. For example, it can increase the original 15fps to 60fps.
+2024.08 - We find that 4.22.lite is quite suitable for post-processing of [some diffusion model generated videos](https://drive.google.com/drive/folders/1hSzUn10Era3JCaVz0Z5Eg4wT9R6eJ9U9?usp=sharing).
 
 <img width="710" alt="image" src="https://github.com/hzwer/Practical-RIFE/assets/10103856/e692b6f0-ff1a-45f7-8cd7-2bd3e6919ec5">
 
