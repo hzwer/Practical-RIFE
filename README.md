@@ -3,7 +3,7 @@
 
   **Use this project on Google Colab for free! Check out the [Practical-RIFE Colab Notebook](https://colab.research.google.com/drive/1BZmGSq15O4ZU5vPfzkv7jFNYahTm6qwT?usp=sharing).** 
 
-2024.08 - We find that 4.22.lite is quite suitable for post-processing of [some diffusion model generated videos](https://drive.google.com/drive/folders/1hSzUn10Era3JCaVz0Z5Eg4wT9R6eJ9U9?usp=sharing).
+2024.08 - We find that 4.25 is quite suitable for post-processing of [some diffusion model generated videos](https://drive.google.com/drive/folders/1hSzUn10Era3JCaVz0Z5Eg4wT9R6eJ9U9?usp=sharing).
 
 <img width="710" alt="image" src="https://github.com/hzwer/Practical-RIFE/assets/10103856/e692b6f0-ff1a-45f7-8cd7-2bd3e6919ec5">
 
@@ -18,7 +18,7 @@ Thanks to [SVFI team](https://github.com/Justin62628/Squirrel-RIFE) to support m
 ## Frame Interpolation
 ### Model List
 The content of these links is under the same MIT license as this project. **lite** means using similar training framework, but lower computational cost model.
-For anime scenes, it is recommended to choose 4.25, and for real scenes, it is recommended to choose 4.18.
+Currently, it is recommended to choose 4.25 by default for most scenes.
 
 4.25 - 21M - 2024.09.19 | [Google Drive](https://drive.google.com/file/d/1ZKjcbmt1hypiFprJPIKW0Tt0lr_2i7bg/view?usp=sharing) [百度网盘](https://pan.baidu.com/s/1rpUX5uawusz2uwEdXtjRbw?pwd=mo6k) | I am trying using more flow blocks, so the scale_list will change accordingly. It is said that the anime scenes have been significantly improved.
 
