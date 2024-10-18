@@ -14,7 +14,7 @@ Thanks to [SVFI team](https://github.com/Justin62628/Squirrel-RIFE) to support m
 
 ### Trained Model
 The content of these links is under the same MIT license as this project. **lite** means using similar training framework, but lower computational cost model.
-Currently, it is recommended to choose 4.26 by default for most scenes.
+Currently, it is recommended to choose 4.25 by default for most scenes.
 
 4.26 - 21M - 2024.09.21 | [Google Drive](https://drive.google.com/file/d/1gViYvvQrtETBgU1w8axZSsr7YUuw31uy/view?usp=sharing) [百度网盘](https://pan.baidu.com/s/1EZsG3IFO8C1e2uRVb_Npgg?pwd=smw8)
 
