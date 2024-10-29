@@ -36,7 +36,7 @@ v3.8 - 2021.6.17 | [Google Drive](https://drive.google.com/file/d/1O5KfS3KzZCY3i
 [More Older Version](https://github.com/megvii-research/ECCV2022-RIFE/issues/41)
 
 ### Installation
-
+python <= 3.11
 ```
 git clone git@github.com:hzwer/Practical-RIFE.git
 cd Practical-RIFE
