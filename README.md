@@ -16,7 +16,7 @@ Thanks to [SVFI team](https://github.com/Justin62628/Squirrel-RIFE) to support m
 The content of these links is under the same MIT license as this project. **lite** means using similar training framework, but lower computational cost model.
 Currently, it is recommended to choose 4.25 by default for most scenes.
 
-4.26 - 2024.09.21 | [Google Drive](https://drive.google.com/file/d/1gViYvvQrtETBgU1w8axZSsr7YUuw31uy/view?usp=sharing) [百度网盘](https://pan.baidu.com/s/1EZsG3IFO8C1e2uRVb_Npgg?pwd=smw8) || [4.25.lite - 2024.10.20](https://drive.google.com/file/d/1zlKblGuKNatulJNFf5jdB-emp9AqGK05/view?usp=share_link) 
+4.26 - 2024.09.21 | [Google Drive](https://drive.google.com/file/d/1gViYvvQrtETBgU1w8axZSsr7YUuw31uy/view?usp=sharing) [百度网盘](https://pan.baidu.com/s/1EZsG3IFO8C1e2uRVb_Npgg?pwd=smw8) || [4.26.large](https://drive.google.com/file/d/1vJy82jub1D9O8BZgjPeMu3HHx4bG-NY1/view?usp=sharing) || [4.25.lite - 2024.10.20](https://drive.google.com/file/d/1zlKblGuKNatulJNFf5jdB-emp9AqGK05/view?usp=share_link) 
 
 4.25 - 2024.09.19 | [Google Drive](https://drive.google.com/file/d/1ZKjcbmt1hypiFprJPIKW0Tt0lr_2i7bg/view?usp=sharing) [百度网盘](https://pan.baidu.com/s/1rpUX5uawusz2uwEdXtjRbw?pwd=mo6k) | I am trying using more flow blocks, so the scale_list will change accordingly. It seems that the anime scenes have been significantly improved.
 
