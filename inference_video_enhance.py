@@ -67,7 +67,7 @@ assert (not args.video is None or not args.img is None)
 if not args.img is None:
     args.png = True
 
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+device = torch.device("cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu")
 torch.set_grad_enabled(False)
 if torch.cuda.is_available():
     torch.backends.cudnn.enabled = True

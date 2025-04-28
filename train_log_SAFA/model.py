@@ -9,8 +9,8 @@ from torch.nn.parallel import DistributedDataParallel as DDP
 from train_log.flownet import *
 import torch.nn.functional as F
 
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    
+device = torch.device("cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu")
+
 class Model:
     def __init__(self, local_rank=-1):
         self.flownet = SAFA()
@@ -41,6 +41,8 @@ class Model:
             
         if device == torch.device('cpu'):
             self.flownet.load_state_dict(convert(torch.load('{}/flownet.pkl'.format(path), map_location=torch.device('cpu'))))
+        elif device == torch.device('mps'):
+            self.flownet.load_state_dict(convert(torch.load('{}/flownet.pkl'.format(path), map_location=torch.device('mps'))))
         elif rank <= 0:
             self.flownet.load_state_dict(convert(torch.load('{}/flownet.pkl'.format(path))))
         

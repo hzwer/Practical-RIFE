@@ -5,7 +5,7 @@ from torchvision import models
 from train_log.warplayer import warp
 from train_log.head import Head
 
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+device = torch.device("cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu")
 
 def conv(in_planes, out_planes, kernel_size=3, stride=1, padding=1, dilation=1, groups=1):
     return nn.Sequential(

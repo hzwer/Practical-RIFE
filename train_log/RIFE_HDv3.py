@@ -10,8 +10,8 @@ from train_log.IFNet_HDv3 import *
 import torch.nn.functional as F
 from model.loss import *
 
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    
+device = torch.device("cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu")
+
 class Model:
     def __init__(self, local_rank=-1):
         self.flownet = IFNet()

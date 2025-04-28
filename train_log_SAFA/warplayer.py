@@ -3,7 +3,7 @@ import torch.nn as nn
 from torch.autograd import Variable
 import os
 import numpy as np
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+device = torch.device("cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu")
 
 backwarp_tenGrid = {}
 
@@ -17,4 +17,12 @@ def warp(tenInput, tenFlow, mode='bilinear'):
     tenFlow = torch.cat([ tenFlow[:, 0:1, :, :] / ((tenInput.shape[3] - 1.0) / 2.0), tenFlow[:, 1:2, :, :] / ((tenInput.shape[2] - 1.0) / 2.0) ], 1)
 
     g = (backwarp_tenGrid[k] + tenFlow).permute(0, 2, 3, 1)
-    return torch.nn.functional.grid_sample(input=tenInput, grid=g, mode=mode, padding_mode='border', align_corners=True)
+
+    pd = 'border'
+
+    # mps does not support 'border' padding mode, use 'zero' instead
+    if tenInput.device.type == "mps":
+        pd = 'zeros'
+        g = g.clamp(-1, 1)
+
+    return torch.nn.functional.grid_sample(input=tenInput, grid=g, mode=mode, padding_mode=pd, align_corners=True)

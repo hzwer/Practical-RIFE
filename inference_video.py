@@ -81,7 +81,7 @@ assert args.scale in [0.25, 0.5, 1.0, 2.0, 4.0]
 if not args.img is None:
     args.png = True
 
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+device = torch.device("cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu")
 torch.set_grad_enabled(False)
 if torch.cuda.is_available():
     torch.backends.cudnn.enabled = True
