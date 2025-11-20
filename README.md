@@ -1,5 +1,5 @@
 # Practical-RIFE 
-**[V4.0 Anime Demo Video](https://www.bilibili.com/video/BV1J3411t7qT?p=1&share_medium=iphone&share_plat=ios&share_session_id=7AE3DA72-D05C-43A0-9838-E2A80885BD4E&share_source=QQ&share_tag=s_i&timestamp=1639643780&unique_k=rjqO0EK)** | **[迭代经验](https://zhuanlan.zhihu.com/p/721430631)** | **[迭代QA](https://github.com/hzwer/Practical-RIFE/issues/124)** | **[Colab](https://colab.research.google.com/drive/1BZmGSq15O4ZU5vPfzkv7jFNYahTm6qwT?usp=sharing)**
+**[V4.0 Anime Demo Video](https://www.bilibili.com/video/BV1J3411t7qT?p=1&share_medium=iphone&share_plat=ios&share_session_id=7AE3DA72-D05C-43A0-9838-E2A80885BD4E&share_source=QQ&share_tag=s_i&timestamp=1639643780&unique_k=rjqO0EK)** | **[迭代经验](https://zhuanlan.zhihu.com/p/721430631)** | **[迭代QA](https://github.com/hzwer/Practical-RIFE/issues/124)** | **[Colab](https://colab.research.google.com/drive/10_n-qGYw5glYQ6k9cejUKr2MKFd5hssC?usp=sharing)**
 
 This project is based on [RIFE](https://github.com/hzwer/arXiv2020-RIFE) and [SAFA](https://github.com/megvii-research/WACV2024-SAFA). We aim to enhance their practicality for users by incorporating various features and designing new models. Since improving the PSNR index is not consistent with subjective perception. This project is intended for engineers and developers. For general users, we recommend the following software:
 
