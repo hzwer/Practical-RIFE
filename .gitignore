@@ -4,7 +4,7 @@
 
 *.pkl
 output/*
-train_log/*
+# train_log/*
 *.mp4
 
 test/
@@ -12,3 +12,5 @@ test/
 *.npz
 
 *.zip
+
+.DS_Store
