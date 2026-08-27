@@ -7,11 +7,19 @@ from tqdm import tqdm
 from torch.nn import functional as F
 import warnings
 import _thread
-import skvideo.io
 from queue import Queue, Empty
 from model.pytorch_msssim import ssim_matlab
 
 warnings.filterwarnings("ignore")
+
+def vreader(filename):
+    cap = cv2.VideoCapture(filename)
+    while True:
+        ret, frame = cap.read()
+        if not ret:
+            break
+        yield frame[:, :, ::-1].copy()  # BGR to RGB
+    cap.release()
 
 def transferAudio(sourceVideo, targetVideo):
     import shutil
@@ -108,7 +116,7 @@ if not args.video is None:
         args.fps = fps * args.multi
     else:
         fpsNotAssigned = False
-    videogen = skvideo.io.vreader(args.video)
+    videogen = vreader(args.video)
     lastframe = next(videogen)
     fourcc = cv2.VideoWriter_fourcc('m', 'p', '4', 'v')
     video_path_wo_ext, ext = os.path.splitext(args.video)
