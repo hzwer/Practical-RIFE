@@ -3,6 +3,8 @@ name = "practical-rife-a6i"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
+license = "GPL-3.0-or-later OR AGPL-3.0-or-later"
+license-files = ["LICENSE", "LICENSE-GPL-3.0.txt", "LICENSE-AGPL-3.0.txt"]
 authors = [
     { name = "__tachyon_gz__", email = "lizihan20040716@outlook.com" }
 ]

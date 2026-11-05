@@ -36,11 +36,10 @@ v3.8 - 2021.6.17 | [Google Drive](https://drive.google.com/file/d/1O5KfS3KzZCY3i
 [More Older Version](https://github.com/megvii-research/ECCV2022-RIFE/issues/41)
 
 ### Installation
-python <= 3.11
 ```
 git clone git@github.com:hzwer/Practical-RIFE.git
 cd Practical-RIFE
-pip3 install -r requirements.txt
+uv sync --locked
 ```
 Download a model from the model list and put *.py and flownet.pkl on train_log/
 ### Run
@@ -119,6 +118,21 @@ python3 inference_video_enhance.py --video=demo.mp4
   year={2024}
 }
 ```
+
+## License
+
+This repository is a fork of [Practical-RIFE](https://github.com/hzwer/Practical-RIFE) and is distributed under a dual-license scheme that preserves the upstream MIT license.
+
+| Part | Copyright | License |
+| --- | --- | --- |
+| Original Practical-RIFE code and model weights | © 2021 hzwer | [MIT](LICENSE) |
+| Modifications and additions in this fork | © 2026 __tachyon_gz__ | [GPL-3.0-or-later](LICENSE-GPL-3.0.txt) OR [AGPL-3.0-or-later](LICENSE-AGPL-3.0.txt) |
+
+- The combined derivative work is distributed as a whole under **GPL-3.0-or-later OR AGPL-3.0-or-later**. You may choose either one: GPL-3.0 if you only redistribute the software, or AGPL-3.0 if you also need the network-use protection (§13) for services built on modified versions.
+- MIT is compatible with these licenses: the upstream MIT grant is retained and not revoked, so the original portions remain available under MIT to anyone who receives them. Keep the original copyright and permission notice when redistributing.
+- Model weights downloaded from the upstream links remain under the upstream MIT license and are not relicensed by this fork.
+
+SPDX-License-Identifier: `GPL-3.0-or-later OR AGPL-3.0-or-later`
 
 ## Reference
 
