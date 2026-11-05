@@ -1,0 +1,34 @@
+[project]
+name = "practical-rife-a6i"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "__tachyon_gz__", email = "lizihan20040716@outlook.com" }
+]
+requires-python = ">=3.14"
+dependencies = [
+    "moviepy>=2.2.1",
+    "numpy>=2.5.4",
+    "opencv-python>=5.0.0.93",
+    "scikit-video>=1.1.11",
+    "torch>=2.15.0",
+    "torchvision>=0.29.2",
+    "tqdm>=4.70.1",
+]
+
+[project.scripts]
+practical-rife-a6i = "practical_rife_a6i:main"
+
+[tool.uv.sources]
+torch = { index = "pytorch-cu134" }
+torchvision = { index = "pytorch-cu134" }
+
+[[tool.uv.index]]
+name = "pytorch-cu134"
+url = "https://download.pytorch.org/whl/cu134"
+explicit = true
+
+[build-system]
+requires = ["uv_build>=0.13.5,<0.14.0"]
+build-backend = "uv_build"

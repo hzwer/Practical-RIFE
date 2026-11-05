@@ -1,22 +1,22 @@
+import subprocess
+
+import numpy as np
+np.float = np.float64
+np.int = np.int32
 import os
 import cv2
 import torch
 import argparse
-import numpy as np
 from tqdm import tqdm
 from torch.nn import functional as F
-import warnings
 import _thread
 import skvideo.io
-from queue import Queue, Empty
+from queue import Queue
 from model.pytorch_msssim import ssim_matlab
 
-warnings.filterwarnings("ignore")
-
-def transferAudio(sourceVideo, targetVideo):
+def transfer_audio(source_video, target_video: str):
     import shutil
-    import moviepy.editor
-    tempAudioFileName = "./temp/audio.mkv"
+    temp_audio_file_name = "./temp/audio.mkv"
 
     # split audio from original video file and store in "temp" directory
     if True:
@@ -28,27 +28,56 @@ def transferAudio(sourceVideo, targetVideo):
         # create new "temp" directory
         os.makedirs("temp")
         # extract audio from video
-        os.system('ffmpeg -y -i "{}" -c:a copy -vn {}'.format(sourceVideo, tempAudioFileName))
-
-    targetNoAudio = os.path.splitext(targetVideo)[0] + "_noaudio" + os.path.splitext(targetVideo)[1]
-    os.rename(targetVideo, targetNoAudio)
+        # os.system('ffmpeg -y -i "{}" -c:a copy -vn {}'.format(source_video, temp_audio_file_name))
+        subprocess.run(
+            ["ffmpeg", "-y", "-i", source_video, "-c:a", "copy", "-vn", temp_audio_file_name],
+            check=True,
+        )
+    target_no_audio = os.path.splitext(target_video)[0] + "_noaudio" + os.path.splitext(target_video)[1]
+    os.rename(target_video, target_no_audio)
     # combine audio file and new video file
-    os.system('ffmpeg -y -i "{}" -i {} -c copy "{}"'.format(targetNoAudio, tempAudioFileName, targetVideo))
+    # os.system('ffmpeg -y -i "{}" -i {} -c copy "{}"'.format(target_no_audio, temp_audio_file_name, target_video))
+    subprocess.run(
+        ["ffmpeg", "-y", "-i", target_no_audio, "-i", temp_audio_file_name, '-c' "copy", target_video],
+        check=True,
+    )
+    if os.path.getsize(target_video) == 0: # if ffmpeg failed to merge the video and audio together try converting the audio to aac
+        temp_audio_file_name = "./temp/audio.m4a"
+        # os.system('ffmpeg -y -i "{}" -c:a aac -b:a 160k -vn {}'.format(source_video, temp_audio_file_name))
+        # os.system('ffmpeg -y -i "{}" -i {} -c copy "{}"'.format(target_no_audio, temp_audio_file_name, target_video))
 
-    if os.path.getsize(targetVideo) == 0: # if ffmpeg failed to merge the video and audio together try converting the audio to aac
-        tempAudioFileName = "./temp/audio.m4a"
-        os.system('ffmpeg -y -i "{}" -c:a aac -b:a 160k -vn {}'.format(sourceVideo, tempAudioFileName))
-        os.system('ffmpeg -y -i "{}" -i {} -c copy "{}"'.format(targetNoAudio, tempAudioFileName, targetVideo))
-        if (os.path.getsize(targetVideo) == 0): # if aac is not supported by selected format
-            os.rename(targetNoAudio, targetVideo)
+        # 1. 从原视频提取音频，转 aac 160k
+        subprocess.run(
+            [
+                "ffmpeg", "-y",
+                "-i", source_video,
+                "-c:a", "aac", "-b:a", "160k",
+                "-vn",
+                temp_audio_file_name,
+            ],
+            check=True,
+        )
+        # 2. 把无声视频和提取出的音频合并
+        subprocess.run(
+            [
+                "ffmpeg", "-y",
+                "-i", target_no_audio,
+                "-i", temp_audio_file_name,
+                "-c", "copy",
+                target_video,
+            ],
+            check=True,
+        )
+        if os.path.getsize(target_video) == 0: # if aac is not supported by selected format
+            os.rename(target_no_audio, target_video)
             print("Audio transfer failed. Interpolated video will have no audio")
         else:
             print("Lossless audio transfer failed. Audio was transcoded to AAC (M4A) instead.")
 
             # remove audio-less video
-            os.remove(targetNoAudio)
+            os.remove(target_no_audio)
     else:
-        os.remove(targetNoAudio)
+        os.remove(target_no_audio)
 
     # remove temp directory
     shutil.rmtree("temp")
@@ -86,8 +115,10 @@ torch.set_grad_enabled(False)
 if torch.cuda.is_available():
     torch.backends.cudnn.enabled = True
     torch.backends.cudnn.benchmark = True
-    if(args.fp16):
-        torch.set_default_tensor_type(torch.cuda.HalfTensor)
+    if args.fp16:
+        # torch.set_default_tensor_type(torch.cuda.HalfTensor)
+        torch.set_default_dtype(torch.float16)
+        torch.set_default_device('cuda')
 
 from train_log.RIFE_HDv3 import Model
 model = Model()
@@ -98,7 +129,10 @@ print("Loaded 3.x/4.x HD model.")
 model.eval()
 model.device()
 
-if not args.video is None:
+fpsNotAssigned = False
+fourcc = cv2.VideoWriter.fourcc('m', 'p', '4', 'v')
+video_path_wo_ext = ''
+if args.video is not None:
     videoCapture = cv2.VideoCapture(args.video)
     fps = videoCapture.get(cv2.CAP_PROP_FPS)
     tot_frame = videoCapture.get(cv2.CAP_PROP_FRAME_COUNT)
@@ -106,11 +140,9 @@ if not args.video is None:
     if args.fps is None:
         fpsNotAssigned = True
         args.fps = fps * args.multi
-    else:
-        fpsNotAssigned = False
     videogen = skvideo.io.vreader(args.video)
     lastframe = next(videogen)
-    fourcc = cv2.VideoWriter_fourcc('m', 'p', '4', 'v')
+    # fourcc = cv2.VideoWriter.fourcc('m', 'p', '4', 'v')
     video_path_wo_ext, ext = os.path.splitext(args.video)
     print('{}.{}, {} frames in total, {}FPS to {}FPS'.format(video_path_wo_ext, args.ext, tot_frame, fps, args.fps))
     if args.png == False and fpsNotAssigned == True:
@@ -124,10 +156,11 @@ else:
             videogen.append(f)
     tot_frame = len(videogen)
     videogen.sort(key= lambda x:int(x[:-4]))
+    assert args.img is not None
     lastframe = cv2.imread(os.path.join(args.img, videogen[0]), cv2.IMREAD_UNCHANGED)[:, :, ::-1].copy()
     videogen = videogen[1:]
 h, w, _ = lastframe.shape
-vid_out_name = None
+vid_out_name = ''
 vid_out = None
 if args.png:
     if not os.path.exists('vid_out'):
@@ -187,8 +220,8 @@ def pad_image(img):
     else:
         return F.pad(img, padding)
 
+left = w // 4 if args.montage else 0
 if args.montage:
-    left = w // 4
     w = w // 2
 tmp = max(128, int(128 / args.scale))
 ph = ((h - 1) // tmp + 1) * tmp
@@ -202,7 +235,7 @@ read_buffer = Queue(maxsize=500)
 _thread.start_new_thread(build_read_buffer, (args, read_buffer, videogen))
 _thread.start_new_thread(clear_write_buffer, (args, write_buffer))
 
-I1 = torch.from_numpy(np.transpose(lastframe, (2,0,1))).to(device, non_blocking=True).unsqueeze(0).float() / 255.
+I1 = torch.tensor(np.transpose(lastframe, (2,0,1))).to(device, non_blocking=True).unsqueeze(0).float() / 255.
 I1 = pad_image(I1)
 temp = None # save lastframe when processing static frame
 
@@ -215,7 +248,7 @@ while True:
     if frame is None:
         break
     I0 = I1
-    I1 = torch.from_numpy(np.transpose(frame, (2,0,1))).to(device, non_blocking=True).unsqueeze(0).float() / 255.
+    I1 = torch.tensor(np.transpose(frame, (2,0,1))).to(device, non_blocking=True).unsqueeze(0).float() / 255.
     I1 = pad_image(I1)
     I0_small = F.interpolate(I0, (32, 32), mode='bilinear', align_corners=False)
     I1_small = F.interpolate(I1, (32, 32), mode='bilinear', align_corners=False)
@@ -283,7 +316,7 @@ if not vid_out is None:
 # move audio to new video file if appropriate
 if args.png == False and fpsNotAssigned == True and not args.video is None:
     try:
-        transferAudio(args.video, vid_out_name)
+        transfer_audio(args.video, vid_out_name)
     except:
         print("Audio transfer failed. Interpolated video will have no audio")
         targetNoAudio = os.path.splitext(vid_out_name)[0] + "_noaudio" + os.path.splitext(vid_out_name)[1]
