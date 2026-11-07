@@ -8,7 +8,7 @@ license-files = ["LICENSE", "LICENSE-GPL-3.0.txt", "LICENSE-AGPL-3.0.txt"]
 authors = [
     { name = "__tachyon_gz__", email = "lizihan20040716@outlook.com" }
 ]
-requires-python = ">=3.14"
+requires-python = ">=3.13"
 dependencies = [
     "moviepy>=2.2.1",
     "numpy>=2.5.4",
