@@ -1,8 +1,11 @@
 import os
+from pathlib import Path
+
 import cv2
 import torch
 import argparse
 from torch.nn import functional as F
+from practical_rife_a6i import train_log
 import warnings
 warnings.filterwarnings("ignore")
 
@@ -18,7 +21,7 @@ parser.add_argument('--exp', default=4, type=int)
 parser.add_argument('--ratio', default=0, type=float, help='inference ratio between two images with 0 - 1 range')
 parser.add_argument('--rthreshold', default=0.02, type=float, help='returns image when actual ratio falls in given range threshold')
 parser.add_argument('--rmaxcycles', default=8, type=int, help='limit max number of bisectional cycles')
-parser.add_argument('--model', dest='modelDir', type=str, default='train_log', help='directory with trained model files')
+parser.add_argument('--model', dest='modelDir', type=str, default=str(Path(train_log.__file__).resolve().parent), help='directory with trained model files')
 
 args = parser.parse_args()
 
@@ -29,7 +32,7 @@ try:
         model.load_model(args.modelDir, -1)
         print("Loaded v2.x HD model.")
     except:
-        from train_log.RIFE_HDv3 import Model
+        from practical_rife_a6i.train_log.RIFE_HDv3 import Model
         model = Model()
         model.load_model(args.modelDir, -1)
         print("Loaded v3.x HD model.")

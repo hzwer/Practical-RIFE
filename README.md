@@ -41,7 +41,7 @@ git clone git@github.com:hzwer/Practical-RIFE.git
 cd Practical-RIFE
 uv sync --locked
 ```
-Download a model from the model list and put *.py and flownet.pkl on train_log/
+Download a model from the model list and put *.py and flownet.pkl on `src/practical_rife_a6i/train_log/` (or pass `--model <dir>`).
 ### Run
 
 You can use our [demo video](https://drive.google.com/file/d/1i3xlKb7ax7Y70khcTcuePi6E7crO_dFc/view?usp=sharing) or your video. 

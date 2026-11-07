@@ -38,7 +38,6 @@ Inference details are copied from ``inference_video.py``: zero padding to
 
 from __future__ import annotations
 
-import sys
 from pathlib import Path
 
 import numpy as np
@@ -46,15 +45,8 @@ import torch
 import torch.nn.functional as F
 from torch import Tensor
 
-# ``model`` and ``train_log`` live at the repository root, while this module
-# is installed from ``src``. Make the checkout importable when the package is
-# used as an editable install from an arbitrary working directory.
-_REPO_ROOT = Path(__file__).resolve().parents[2]
-if str(_REPO_ROOT) not in sys.path:
-    sys.path.insert(0, str(_REPO_ROOT))
-
-from model.pytorch_msssim import create_window_3d, ssim_matlab  # noqa: E402
-from train_log.RIFE_HDv3 import Model  # noqa: E402
+from practical_rife_a6i.model.pytorch_msssim import create_window_3d, ssim_matlab
+from practical_rife_a6i.train_log.RIFE_HDv3 import Model
 
 __all__ = [
     "RifeVideoInterpolator",
@@ -66,7 +58,8 @@ __all__ = [
     "ssim_score",
 ]
 
-_DEFAULT_MODEL_DIR = _REPO_ROOT / "train_log"
+_PACKAGE_DIR = Path(__file__).resolve().parent
+_DEFAULT_MODEL_DIR = _PACKAGE_DIR / "train_log"
 _VALID_SCALES = (0.25, 0.5, 1.0, 2.0, 4.0)
 _STATIC_SSIM = 0.996
 _CUT_SSIM = 0.2
@@ -116,8 +109,8 @@ def _compute_padding(height: int, width: int, scale: float) -> tuple[int, int, i
 def load_rife_model(model_dir=None, fp16: bool = False, device=None):
     """Load the RIFE HDv3 model the same way ``inference_video.py`` does.
 
-    Returns ``(model, device)``. ``model_dir`` defaults to the checkout's
-    ``train_log`` directory.
+    Returns ``(model, device)``. ``model_dir`` defaults to the ``train_log``
+    directory bundled inside the installed package.
     """
     target_device = _resolve_device(device)
     if fp16 and target_device.type != "cuda":
@@ -206,8 +199,8 @@ class RifeVideoInterpolator:
     Parameters
     ----------
     model_dir:
-        Directory containing ``flownet.pkl``. Defaults to ``train_log`` in the
-        repository checkout.
+        Directory containing ``flownet.pkl``. Defaults to the ``train_log``
+        directory bundled inside the installed package.
     scale:
         Inference scale, one of 0.25, 0.5, 1.0, 2.0, 4.0. Use 0.5 for 4K input.
     fp16:
