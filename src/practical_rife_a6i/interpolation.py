@@ -44,6 +44,7 @@ from pathlib import Path
 import numpy as np
 import torch
 import torch.nn.functional as F
+from torch import Tensor
 
 # ``model`` and ``train_log`` live at the repository root, while this module
 # is installed from ``src``. Make the checkout importable when the package is
@@ -224,12 +225,12 @@ class RifeVideoInterpolator:
             model_dir, fp16=self.fp16, device=device
         )
 
-    def __call__(self, video, exp: int, **kwargs) -> torch.Tensor:
+    def __call__(self, video: Tensor, exp: int, **kwargs) -> torch.Tensor:
         return self.interpolate(video, exp, **kwargs)
 
     def interpolate(
         self,
-        video,
+        video: Tensor,
         exp: int,
         *,
         layout: str = "auto",
@@ -381,7 +382,7 @@ class RifeVideoInterpolator:
 
 
 def interpolate_video(
-    video,
+    video: Tensor,
     exp: int,
     *,
     model_dir=None,

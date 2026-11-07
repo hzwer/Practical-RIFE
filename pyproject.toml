@@ -1,6 +1,6 @@
 [project]
 name = "practical-rife-a6i"
-version = "0.1.0"
+version = "0.1.2"
 description = "Add your description here"
 readme = "README.md"
 license = "GPL-3.0-or-later OR AGPL-3.0-or-later"
@@ -30,6 +30,11 @@ torchvision = { index = "pytorch-cu134" }
 name = "pytorch-cu134"
 url = "https://download.pytorch.org/whl/cu134"
 explicit = true
+
+[tool.uv.build-backend]
+source-include = [
+    "train_log/**",
+]
 
 [build-system]
 requires = ["uv_build>=0.13.5,<0.14.0"]
