@@ -1,6 +1,8 @@
 from __future__ import annotations
+from practical_rife_a6i.interpolation import RifeVideoInterpolator, interpolate_video
 
 __all__ = ["main", "RifeVideoInterpolator", "interpolate_video"]
+
 
 
 def main() -> None:
