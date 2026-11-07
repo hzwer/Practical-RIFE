@@ -12,12 +12,17 @@ backwarp_tenGrid = {}
 
 def warp(tenInput, tenFlow):
     flow_device = tenFlow.device
-    k = (str(flow_device), str(tenFlow.size()))
+    # The grid must share the flow's dtype: grid_sample rejects mixed
+    # half/float inputs, which happens when fp16 is used without changing the
+    # process-wide default dtype.
+    k = (str(flow_device), str(tenFlow.size()), tenFlow.dtype)
     if k not in backwarp_tenGrid:
-        tenHorizontal = torch.linspace(-1.0, 1.0, tenFlow.shape[3], device=flow_device).view(
-            1, 1, 1, tenFlow.shape[3]).expand(tenFlow.shape[0], -1, tenFlow.shape[2], -1)
-        tenVertical = torch.linspace(-1.0, 1.0, tenFlow.shape[2], device=flow_device).view(
-            1, 1, tenFlow.shape[2], 1).expand(tenFlow.shape[0], -1, -1, tenFlow.shape[3])
+        tenHorizontal = torch.linspace(
+            -1.0, 1.0, tenFlow.shape[3], device=flow_device, dtype=tenFlow.dtype
+        ).view(1, 1, 1, tenFlow.shape[3]).expand(tenFlow.shape[0], -1, tenFlow.shape[2], -1)
+        tenVertical = torch.linspace(
+            -1.0, 1.0, tenFlow.shape[2], device=flow_device, dtype=tenFlow.dtype
+        ).view(1, 1, tenFlow.shape[2], 1).expand(tenFlow.shape[0], -1, -1, tenFlow.shape[3])
         backwarp_tenGrid[k] = torch.cat(
             [tenHorizontal, tenVertical], 1).to(flow_device)
 

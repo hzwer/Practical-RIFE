@@ -8,11 +8,15 @@ import cv2
 import torch
 import argparse
 from tqdm import tqdm
-from torch.nn import functional as F
 import _thread
 import skvideo.io
 from queue import Queue
-from model.pytorch_msssim import ssim_matlab
+from practical_rife_a6i.interpolation import (
+    load_rife_model,
+    make_inference,
+    numpy_frame_to_tensor,
+    ssim_score,
+)
 
 def transfer_audio(source_video, target_video: str):
     import shutil
@@ -38,7 +42,7 @@ def transfer_audio(source_video, target_video: str):
     # combine audio file and new video file
     # os.system('ffmpeg -y -i "{}" -i {} -c copy "{}"'.format(target_no_audio, temp_audio_file_name, target_video))
     subprocess.run(
-        ["ffmpeg", "-y", "-i", target_no_audio, "-i", temp_audio_file_name, '-c' "copy", target_video],
+        ["ffmpeg", "-y", "-i", target_no_audio, "-i", temp_audio_file_name, "-c", "copy", target_video],
         check=True,
     )
     if os.path.getsize(target_video) == 0: # if ffmpeg failed to merge the video and audio together try converting the audio to aac
@@ -115,19 +119,11 @@ torch.set_grad_enabled(False)
 if torch.cuda.is_available():
     torch.backends.cudnn.enabled = True
     torch.backends.cudnn.benchmark = True
-    if args.fp16:
-        # torch.set_default_tensor_type(torch.cuda.HalfTensor)
-        torch.set_default_dtype(torch.float16)
-        torch.set_default_device('cuda')
+    # fp16 is applied to the model and padded inputs by load_rife_model /
+    # pad_image, so the process-wide default dtype/device stays untouched.
 
-from train_log.RIFE_HDv3 import Model
-model = Model()
-if not hasattr(model, 'version'):
-    model.version = 0
-model.load_model(args.modelDir, -1)
+model, device = load_rife_model(args.modelDir, fp16=args.fp16, device=device)
 print("Loaded 3.x/4.x HD model.")
-model.eval()
-model.device()
 
 fpsNotAssigned = False
 fourcc = cv2.VideoWriter.fourcc('m', 'p', '4', 'v')
@@ -196,30 +192,6 @@ def build_read_buffer(user_args, read_buffer, videogen):
         pass
     read_buffer.put(None)
 
-def make_inference(I0, I1, n):    
-    global model
-    if model.version >= 3.9:
-        res = []
-        for i in range(n):
-            res.append(model.inference(I0, I1, (i+1) * 1. / (n+1), args.scale))
-        return res
-    else:
-        middle = model.inference(I0, I1, args.scale)
-        if n == 1:
-            return [middle]
-        first_half = make_inference(I0, middle, n=n//2)
-        second_half = make_inference(middle, I1, n=n//2)
-        if n%2:
-            return [*first_half, middle, *second_half]
-        else:
-            return [*first_half, *second_half]
-
-def pad_image(img):
-    if(args.fp16):
-        return F.pad(img, padding).half()
-    else:
-        return F.pad(img, padding)
-
 left = w // 4 if args.montage else 0
 if args.montage:
     w = w // 2
@@ -235,8 +207,7 @@ read_buffer = Queue(maxsize=500)
 _thread.start_new_thread(build_read_buffer, (args, read_buffer, videogen))
 _thread.start_new_thread(clear_write_buffer, (args, write_buffer))
 
-I1 = torch.tensor(np.transpose(lastframe, (2,0,1))).to(device, non_blocking=True).unsqueeze(0).float() / 255.
-I1 = pad_image(I1)
+I1 = numpy_frame_to_tensor(lastframe, device, padding, args.fp16)
 temp = None # save lastframe when processing static frame
 
 while True:
@@ -248,11 +219,8 @@ while True:
     if frame is None:
         break
     I0 = I1
-    I1 = torch.tensor(np.transpose(frame, (2,0,1))).to(device, non_blocking=True).unsqueeze(0).float() / 255.
-    I1 = pad_image(I1)
-    I0_small = F.interpolate(I0, (32, 32), mode='bilinear', align_corners=False)
-    I1_small = F.interpolate(I1, (32, 32), mode='bilinear', align_corners=False)
-    ssim = ssim_matlab(I0_small[:, :3], I1_small[:, :3])
+    I1 = numpy_frame_to_tensor(frame, device, padding, args.fp16)
+    ssim = ssim_score(I0, I1)
 
     break_flag = False
     if ssim > 0.996:
@@ -262,11 +230,9 @@ while True:
             frame = lastframe
         else:
             temp = frame
-        I1 = torch.from_numpy(np.transpose(frame, (2,0,1))).to(device, non_blocking=True).unsqueeze(0).float() / 255.
-        I1 = pad_image(I1)
+        I1 = numpy_frame_to_tensor(frame, device, padding, args.fp16)
         I1 = model.inference(I0, I1, scale=args.scale)
-        I1_small = F.interpolate(I1, (32, 32), mode='bilinear', align_corners=False)
-        ssim = ssim_matlab(I0_small[:, :3], I1_small[:, :3])
+        ssim = ssim_score(I0, I1)
         frame = (I1[0] * 255).byte().cpu().numpy().transpose(1, 2, 0)[:h, :w]
         
     if ssim < 0.2:
@@ -283,7 +249,7 @@ while True:
             output.append(torch.from_numpy(np.transpose((cv2.addWeighted(frame[:, :, ::-1], alpha, lastframe[:, :, ::-1], beta, 0)[:, :, ::-1].copy()), (2,0,1))).to(device, non_blocking=True).unsqueeze(0).float() / 255.)
         '''
     else:
-        output = make_inference(I0, I1, args.multi - 1)
+        output = make_inference(model, I0, I1, args.multi - 1, args.scale)
 
     if args.montage:
         write_buffer.put(np.concatenate((lastframe, lastframe), 1))

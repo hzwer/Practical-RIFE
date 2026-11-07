@@ -84,6 +84,23 @@ Parameter descriptions:
 
 --skip: It's no longer useful refer to [issue 207](https://github.com/hzwer/ECCV2022-RIFE/issues/207)
 
+### Python API (tensor in / tensor out)
+The inference logic from `inference_video.py` is also available as an importable API that works directly on tensors:
+```python
+import torch
+from practical_rife_a6i import RifeVideoInterpolator, interpolate_video
+
+# video: (T, C, H, W) or (T, H, W, C); uint8 (0..255) or float (0..1)
+video = torch.randint(0, 256, (8, 3, 720, 1280), dtype=torch.uint8)
+
+out = interpolate_video(video, exp=1)   # 15 frames, same layout/dtype
+
+# Reuse the loaded model when processing several videos:
+engine = RifeVideoInterpolator(scale=1.0, device="cuda")
+out = engine(video, exp=2)              # 4x frames
+```
+`exp` has the same meaning as the CLI flag: the result contains `(T - 1) * 2 ** exp + 1` frames. See `src/practical_rife_a6i/interpolation.py` for all options (`layout`, `output_layout`, `output_device`, `fp16`, ...).
+
 
 ### Model training
 The whole repo can be downloaded from [v4.0](https://drive.google.com/file/d/1zoSz7b8c6kUsnd4gYZ_6TrKxa7ghHJWW/view?usp=sharing), [v4.12](https://drive.google.com/file/d/1IHB35zhO4rr-JSMnpRvHhU9U65Z4giWv/view?usp=sharing), [v4.15](https://drive.google.com/file/d/19sUMZ-6H7g_hYDjTcqxYu9kE7TqnfS3k/view?usp=sharing), [v4.18](https://drive.google.com/file/d/1g8D2foww7DhGLIxtaDLr9fU3y-ByOw4B/view?usp=share_link), [v4.25](https://drive.google.com/file/d/1_l4OgBp3GrrHOcQB87xXCI7OtTzyeXZL/view?usp=share_link). However, we currently do not have the time to organize them well, they are for reference only.
