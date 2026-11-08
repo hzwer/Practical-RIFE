@@ -1,6 +1,6 @@
 [project]
 name = "practical-rife-a6i"
-version = "0.1.3"
+version = "0.1.4"
 description = "Add your description here"
 readme = "README.md"
 license = "GPL-3.0-or-later OR AGPL-3.0-or-later"
