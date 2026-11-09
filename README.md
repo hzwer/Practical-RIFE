@@ -84,8 +84,8 @@ Parameter descriptions:
 
 --skip: It's no longer useful refer to [issue 207](https://github.com/hzwer/ECCV2022-RIFE/issues/207)
 
-### Python API (tensor in / tensor out)
-The inference logic from `inference_video.py` is also available as an importable API that works directly on tensors:
+### Python API
+The inference logic from `inference_video.py` is also available as an importable API. It works directly on tensors:
 ```python
 import torch
 from practical_rife_a6i import RifeVideoInterpolator, interpolate_video
@@ -100,6 +100,25 @@ engine = RifeVideoInterpolator(scale=1.0, device="cuda")
 out = engine(video, exp=2)              # 4x frames
 ```
 `exp` has the same meaning as the CLI flag: the result contains `(T - 1) * 2 ** exp + 1` frames. See `src/practical_rife_a6i/interpolation.py` for all options (`layout`, `output_layout`, `output_device`, `fp16`, ...).
+
+Video files can be processed directly as well:
+
+```python
+from pathlib import Path
+from practical_rife_a6i import RifeVideoInterpolator
+
+engine = RifeVideoInterpolator(scale=1.0, device="cuda")
+out = engine.interpolate_in_file(
+    Path("video.mp4"),
+    Path("./temp"),                     # scratch dir, only used when audio is merged
+    exp=1,                              # 2x frame rate
+    Path("video_2X.mp4"),               # output path (required, must be a Path)
+    Path(r"C:\ffmpeg\bin\ffmpeg.exe"),  # ffmpeg executable (required, must be a Path)
+    fps=None,                           # None => source_fps * 2**exp and merge source audio
+)
+```
+
+`output` and `ffmpeg` are required `Path` arguments. `ffprobe` must be installed in the same directory as `ffmpeg` (scikit-video needs both). Passing `fps=` explicitly disables audio merging, matching `--fps`. Static-frame collapsing can make the output shorter than `(T - 1) * 2 ** exp + 1` frames.
 
 
 ### Model training

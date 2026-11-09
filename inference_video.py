@@ -4,22 +4,26 @@ import numpy as np
 np.float = np.float64
 np.int = np.int32
 import os
+import shutil
+import sys
 import cv2
 import torch
 import argparse
+from pathlib import Path
 from tqdm import tqdm
 import _thread
 import skvideo.io
 from queue import Queue
 from practical_rife_a6i.interpolation import (
+    RifeVideoInterpolator,
+    _load_skvideo,
     load_rife_model,
     make_inference,
     numpy_frame_to_tensor,
     ssim_score,
 )
 
-def transfer_audio(source_video, target_video: str):
-    import shutil
+def transfer_audio(source_video, target_video: str, ffmpeg):
     temp_audio_file_name = "./temp/audio.mkv"
 
     # split audio from original video file and store in "temp" directory
@@ -34,7 +38,7 @@ def transfer_audio(source_video, target_video: str):
         # extract audio from video
         # os.system('ffmpeg -y -i "{}" -c:a copy -vn {}'.format(source_video, temp_audio_file_name))
         subprocess.run(
-            ["ffmpeg", "-y", "-i", source_video, "-c:a", "copy", "-vn", temp_audio_file_name],
+            [str(ffmpeg), "-y", "-i", source_video, "-c:a", "copy", "-vn", temp_audio_file_name],
             check=True,
         )
     target_no_audio = os.path.splitext(target_video)[0] + "_noaudio" + os.path.splitext(target_video)[1]
@@ -42,7 +46,7 @@ def transfer_audio(source_video, target_video: str):
     # combine audio file and new video file
     # os.system('ffmpeg -y -i "{}" -i {} -c copy "{}"'.format(target_no_audio, temp_audio_file_name, target_video))
     subprocess.run(
-        ["ffmpeg", "-y", "-i", target_no_audio, "-i", temp_audio_file_name, "-c", "copy", target_video],
+        [str(ffmpeg), "-y", "-i", target_no_audio, "-i", temp_audio_file_name, "-c", "copy", target_video],
         check=True,
     )
     if os.path.getsize(target_video) == 0: # if ffmpeg failed to merge the video and audio together try converting the audio to aac
@@ -53,7 +57,7 @@ def transfer_audio(source_video, target_video: str):
         # 1. 从原视频提取音频，转 aac 160k
         subprocess.run(
             [
-                "ffmpeg", "-y",
+                str(ffmpeg), "-y",
                 "-i", source_video,
                 "-c:a", "aac", "-b:a", "160k",
                 "-vn",
@@ -64,7 +68,7 @@ def transfer_audio(source_video, target_video: str):
         # 2. 把无声视频和提取出的音频合并
         subprocess.run(
             [
-                "ffmpeg", "-y",
+                str(ffmpeg), "-y",
                 "-i", target_no_audio,
                 "-i", temp_audio_file_name,
                 "-c", "copy",
@@ -101,11 +105,17 @@ parser.add_argument('--png', dest='png', action='store_true', help='whether to v
 parser.add_argument('--ext', dest='ext', type=str, default='mp4', help='vid_out video extension')
 parser.add_argument('--exp', dest='exp', type=int, default=1)
 parser.add_argument('--multi', dest='multi', type=int, default=2)
+parser.add_argument('--ffmpeg', dest='ffmpeg', type=str, default=None, help='path to the ffmpeg executable (default: resolve from PATH)')
 
 args = parser.parse_args()
+
+ffmpeg_path = Path(args.ffmpeg) if args.ffmpeg is not None else Path(shutil.which("ffmpeg") or "ffmpeg")
+
 if args.exp != 1:
     args.multi = (2 ** args.exp)
+
 assert (not args.video is None or not args.img is None)
+
 if args.skip:
     print("skip flag is abandoned, please refer to issue #207.")
 if args.UHD and args.scale==1.0:
@@ -122,6 +132,64 @@ if torch.cuda.is_available():
     # fp16 is applied to the model and padded inputs by load_rife_model /
     # pad_image, so the process-wide default dtype/device stays untouched.
 
+def _exp_from_args(user_args):
+    """Map legacy --multi/--exp onto a power-of-two exponent, or None."""
+    if user_args.exp != 1:
+        return user_args.exp
+    multi = user_args.multi
+    if isinstance(multi, int) and multi > 0 and multi & (multi - 1) == 0:
+        return multi.bit_length() - 1
+    return None  # e.g. --multi 3 cannot be expressed as exp
+
+delegate = (args.video is not None and args.img is None
+            and not args.png and not args.montage)
+exp = _exp_from_args(args) if delegate else None
+
+if delegate and exp is not None:
+    engine = RifeVideoInterpolator(
+        model_dir=args.modelDir, scale=args.scale,
+        fp16=args.fp16, device=device,
+    )
+    print("Loaded 3.x/4.x HD model.")
+
+    videoCapture = cv2.VideoCapture(args.video)
+    source_fps = videoCapture.get(cv2.CAP_PROP_FPS)
+    tot_frame = videoCapture.get(cv2.CAP_PROP_FRAME_COUNT)
+    videoCapture.release()
+
+    output_fps = args.fps if args.fps is not None else source_fps * (2 ** exp)
+    if args.output is not None:
+        output_path = Path(args.output)
+    else:
+        video_path_wo_ext, _ = os.path.splitext(args.video)
+        output_path = Path(
+            '{}_{}X_{}fps.{}'.format(
+                video_path_wo_ext, 2 ** exp, int(np.round(output_fps)), args.ext
+            )
+        )
+
+    print('{}, {} frames in total, {}FPS to {}FPS'.format(
+        args.video, int(tot_frame), source_fps, output_fps))
+    if args.fps is None:
+        print("The audio will be merged after interpolation process")
+    else:
+        print("Will not merge audio because using fps flag!")
+
+    try:
+        output_path = engine.interpolate_in_file(
+            Path(args.video), Path("./temp"), exp, output_path, ffmpeg_path,
+            fps=args.fps,
+        )
+    except Exception as exc:
+        print("Video interpolation failed: {}".format(exc), file=sys.stderr)
+        raise SystemExit(1) from exc
+
+    print("Interpolated video written to {}".format(output_path))
+    raise SystemExit(0)
+
+if delegate:
+    print("--multi is not a power of two; using the legacy pipeline.")
+
 model, device = load_rife_model(args.modelDir, fp16=args.fp16, device=device)
 print("Loaded 3.x/4.x HD model.")
 
@@ -129,18 +197,24 @@ fpsNotAssigned = False
 fourcc = cv2.VideoWriter.fourcc('m', 'p', '4', 'v')
 video_path_wo_ext = ''
 if args.video is not None:
+    _load_skvideo(ffmpeg_path)
     videoCapture = cv2.VideoCapture(args.video)
     fps = videoCapture.get(cv2.CAP_PROP_FPS)
     tot_frame = videoCapture.get(cv2.CAP_PROP_FRAME_COUNT)
     videoCapture.release()
+
+
     if args.fps is None:
         fpsNotAssigned = True
         args.fps = fps * args.multi
+
     videogen = skvideo.io.vreader(args.video)
     lastframe = next(videogen)
     # fourcc = cv2.VideoWriter.fourcc('m', 'p', '4', 'v')
     video_path_wo_ext, ext = os.path.splitext(args.video)
+
     print('{}.{}, {} frames in total, {}FPS to {}FPS'.format(video_path_wo_ext, args.ext, tot_frame, fps, args.fps))
+
     if args.png == False and fpsNotAssigned == True:
         print("The audio will be merged after interpolation process")
     else:
@@ -155,6 +229,7 @@ else:
     assert args.img is not None
     lastframe = cv2.imread(os.path.join(args.img, videogen[0]), cv2.IMREAD_UNCHANGED)[:, :, ::-1].copy()
     videogen = videogen[1:]
+
 h, w, _ = lastframe.shape
 vid_out_name = ''
 vid_out = None
@@ -282,7 +357,7 @@ if not vid_out is None:
 # move audio to new video file if appropriate
 if args.png == False and fpsNotAssigned == True and not args.video is None:
     try:
-        transfer_audio(args.video, vid_out_name)
+        transfer_audio(args.video, vid_out_name, ffmpeg_path)
     except:
         print("Audio transfer failed. Interpolated video will have no audio")
         targetNoAudio = os.path.splitext(vid_out_name)[0] + "_noaudio" + os.path.splitext(vid_out_name)[1]

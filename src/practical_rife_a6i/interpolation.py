@@ -38,6 +38,7 @@ Inference details are copied from ``inference_video.py``: zero padding to
 
 from __future__ import annotations
 
+import warnings
 from pathlib import Path
 
 import numpy as np
@@ -177,6 +178,8 @@ def make_inference(model, I0: torch.Tensor, I1: torch.Tensor, n: int, scale: flo
     v3.9+ models infer every timestep directly; older models use the recursive
     midpoint strategy from ``inference_video.py``.
     """
+    if n <= 0:
+        return []
     if getattr(model, "version", 0) >= 3.9:
         return [
             model.inference(I0, I1, (i + 1) * 1.0 / (n + 1), scale)
@@ -191,6 +194,136 @@ def make_inference(model, I0: torch.Tensor, I1: torch.Tensor, n: int, scale: flo
     if n % 2:
         return [*first_half, middle, *second_half]
     return [*first_half, *second_half]
+
+
+def _load_skvideo(ffmpeg: Path):
+    """Import scikit-video configured to use ``ffmpeg``.
+
+    scikit-video 1.1.11 still relies on the ``np.int`` / ``np.float`` aliases
+    that NumPy 2 removed, and it locates the binaries through a directory
+    rather than an executable path. It also copies ``_FFMPEG_PATH`` and
+    ``_HAS_FFMPEG`` into its submodules at import time, so those bound copies
+    are refreshed after ``setFFmpegPath`` to make the explicitly provided
+    executable the one that actually runs.
+    """
+    if not hasattr(np, "float"):
+        np.float = np.float64  # type: ignore[attr-defined]
+    if not hasattr(np, "int"):
+        np.int = np.int32  # type: ignore[attr-defined]
+    import importlib
+
+    import skvideo
+    import skvideo.io
+
+    ffmpeg_module = importlib.import_module("skvideo.io.ffmpeg")
+    ffprobe_module = importlib.import_module("skvideo.io.ffprobe")
+    io_module = importlib.import_module("skvideo.io.io")
+
+    directory = Path(ffmpeg).parent
+    ffprobe_path = directory / skvideo._FFPROBE_APPLICATION
+    if not ffprobe_path.is_file():
+        raise RuntimeError(
+            f"ffprobe must be installed next to ffmpeg: expected {ffprobe_path}"
+        )
+
+    skvideo.setFFmpegPath(str(directory))
+    for module in (skvideo, ffmpeg_module, ffprobe_module, io_module):
+        if hasattr(module, "_FFMPEG_PATH"):
+            module._FFMPEG_PATH = str(directory)
+        if hasattr(module, "_HAS_FFMPEG"):
+            module._HAS_FFMPEG = 1
+    return skvideo.io
+
+
+def _transfer_audio(source: Path, target: Path, temp_directory: Path, ffmpeg: Path) -> None:
+    """Mux the audio track of ``source`` into ``target`` in place.
+
+    ``target`` is left as a valid silent video if muxing fails; a
+    ``RuntimeWarning`` is emitted in that case.
+    """
+    import subprocess
+    import uuid
+
+    ffmpeg = str(ffmpeg)
+    source = Path(source)
+    target = Path(target)
+    temp_directory = Path(temp_directory)
+    created_directory = not temp_directory.exists()
+    temp_directory.mkdir(parents=True, exist_ok=True)
+
+    token = uuid.uuid4().hex[:8]
+    audio_path = temp_directory / f"rife_audio_{token}.mkv"
+    aac_path = temp_directory / f"rife_audio_{token}.m4a"
+    no_audio_path = target.with_name(f"{target.stem}_noaudio{target.suffix}")
+    target_moved = False
+    merged = False
+
+    try:
+        subprocess.run(
+            [ffmpeg, "-y", "-i", str(source), "-c:a", "copy", "-vn", str(audio_path)],
+            check=True,
+        )
+        target.replace(no_audio_path)
+        target_moved = True
+        subprocess.run(
+            [
+                ffmpeg, "-y",
+                "-i", str(no_audio_path),
+                "-i", str(audio_path),
+                "-c", "copy",
+                str(target),
+            ],
+            check=True,
+        )
+        merged = target.exists() and target.stat().st_size > 0
+
+        if not merged:
+            # The container does not support the source codec: transcode to AAC.
+            subprocess.run(
+                [
+                    ffmpeg, "-y",
+                    "-i", str(source),
+                    "-c:a", "aac", "-b:a", "160k",
+                    "-vn",
+                    str(aac_path),
+                ],
+                check=True,
+            )
+            subprocess.run(
+                [
+                    ffmpeg, "-y",
+                    "-i", str(no_audio_path),
+                    "-i", str(aac_path),
+                    "-c", "copy",
+                    str(target),
+                ],
+                check=True,
+            )
+            merged = target.exists() and target.stat().st_size > 0
+
+        if not merged:
+            target.unlink(missing_ok=True)
+            no_audio_path.replace(target)
+            target_moved = False
+            warnings.warn(
+                "Audio transfer failed; the interpolated video has no audio.",
+                RuntimeWarning,
+                stacklevel=2,
+            )
+            return
+    finally:
+        if target_moved and not merged and no_audio_path.exists():
+            target.unlink(missing_ok=True)
+            no_audio_path.replace(target)
+        elif no_audio_path.exists():
+            no_audio_path.unlink(missing_ok=True)
+        audio_path.unlink(missing_ok=True)
+        aac_path.unlink(missing_ok=True)
+        if created_directory:
+            try:
+                temp_directory.rmdir()
+            except OSError:
+                pass
 
 
 class RifeVideoInterpolator:
@@ -219,9 +352,9 @@ class RifeVideoInterpolator:
         )
 
     def __call__(self, video: Tensor, exp: int, **kwargs) -> torch.Tensor:
-        return self.interpolate(video, exp, **kwargs)
+        return self.interpolate_in_tensor(video, exp, **kwargs)
 
-    def interpolate(
+    def interpolate_in_tensor(
         self,
         video: Tensor,
         exp: int,
@@ -373,6 +506,246 @@ class RifeVideoInterpolator:
             result = result.to(output_device)
         return result
 
+    def interpolate_in_file(
+        self,
+        video: Path,
+        temp_directory: Path,
+        exp: int,
+        output: Path,
+        ffmpeg: Path,
+        *,
+        fps: float | None = None,
+        progress: bool = True,
+    ) -> Path:
+        """Interpolate a video file and write the result to another video file.
+
+        Parameters
+        ----------
+        video:
+            Input video path, decoded with FFmpeg through scikit-video.
+        temp_directory:
+            Scratch directory for audio extraction. Only touched when audio is
+            merged, i.e. when ``fps`` is ``None``.
+        exp:
+            Non-negative integer; the output frame rate is multiplied by
+            ``2 ** exp``.
+        output:
+            Output video path. Must be a :class:`pathlib.Path`; the parent
+            directory must already exist.
+        ffmpeg:
+            Path to the FFmpeg executable. ``ffprobe`` must be installed in
+            the same directory, because scikit-video locates both binaries by
+            directory.
+        fps:
+            Output frame rate. ``None`` (default) derives
+            ``source_fps * 2 ** exp`` and merges the source audio; an explicit
+            value disables audio merging, matching ``inference_video.py
+            --fps``.
+        progress:
+            Show a tqdm progress bar.
+
+        Returns
+        -------
+        pathlib.Path
+            The written video path.
+
+        Raises
+        ------
+        FileNotFoundError
+            If ``video`` or ``ffmpeg`` does not exist.
+        TypeError
+            If ``output`` or ``ffmpeg`` is not a :class:`pathlib.Path`.
+        ValueError
+            If ``exp`` is invalid, the source FPS cannot be determined while
+            ``fps`` is ``None``, or ``output`` equals ``video``.
+        RuntimeError
+            If the video cannot be decoded or the writer cannot be opened.
+
+        Notes
+        -----
+        The per-frame algorithm matches ``inference_video.py``: static frames
+        are collapsed through a look-ahead frame (SSIM > 0.996) and scene cuts
+        repeat the previous frame (SSIM < 0.2). As a result the output may
+        contain fewer than ``(T - 1) * 2 ** exp + 1`` frames.
+        """
+        import cv2
+
+        if isinstance(exp, bool) or not isinstance(exp, int) or exp < 0:
+            raise ValueError(f"exp must be a non-negative integer, got {exp!r}")
+        if not isinstance(output, Path):
+            raise TypeError(
+                f"output must be a pathlib.Path, got {type(output).__name__}"
+            )
+        if not isinstance(ffmpeg, Path):
+            raise TypeError(
+                f"ffmpeg must be a pathlib.Path, got {type(ffmpeg).__name__}"
+            )
+
+        video = Path(video)
+        if not video.is_file():
+            raise FileNotFoundError(f"video not found: {video}")
+        if not ffmpeg.is_file():
+            raise FileNotFoundError(f"ffmpeg executable not found: {ffmpeg}")
+
+        multi = 2 ** exp
+        capture = cv2.VideoCapture(str(video))
+        try:
+            if not capture.isOpened():
+                raise RuntimeError(f"could not open video: {video}")
+            source_fps = float(capture.get(cv2.CAP_PROP_FPS))
+            source_frames = int(capture.get(cv2.CAP_PROP_FRAME_COUNT))
+        finally:
+            capture.release()
+
+        merge_audio = fps is None
+        if merge_audio:
+            if not np.isfinite(source_fps) or source_fps <= 0:
+                raise ValueError(
+                    f"could not determine a valid FPS for {video} "
+                    f"(got {source_fps!r}); pass fps= to skip audio merging"
+                )
+            output_fps = source_fps * multi
+        else:
+            output_fps = float(fps)
+        if not np.isfinite(output_fps) or output_fps <= 0:
+            raise ValueError(f"fps must be positive and finite, got {output_fps!r}")
+
+        if output.resolve() == video.resolve():
+            raise ValueError("output path must differ from the input video")
+
+        working_path = output.with_suffix(f".part{output.suffix}")
+        video_io = _load_skvideo(ffmpeg)
+        reader = video_io.vreader(str(video))
+        writer = None
+        pbar = None
+        completed = False
+
+        try:
+            try:
+                first_frame = next(reader, None)
+            except AssertionError as exc:
+                raise RuntimeError(
+                    "ffmpeg and ffprobe must be installed next to the given "
+                    f"ffmpeg executable: {ffmpeg}"
+                ) from exc
+            if first_frame is None:
+                raise RuntimeError(f"no frames could be decoded from: {video}")
+
+            height, width = first_frame.shape[:2]
+            padding = _compute_padding(height, width, self.scale)
+            fourcc = cv2.VideoWriter.fourcc("m", "p", "4", "v")
+            writer = cv2.VideoWriter(
+                str(working_path), fourcc, output_fps, (width, height)
+            )
+            if not writer.isOpened():
+                raise RuntimeError(
+                    f"could not open video writer for {output} "
+                    f"(fps={output_fps}, size={width}x{height})"
+                )
+
+            if progress:
+                from tqdm import tqdm
+
+                pbar = tqdm(
+                    total=source_frames if source_frames > 0 else None,
+                    unit="frame",
+                    desc=output.name,
+                )
+
+            def to_tensor(frame):
+                return numpy_frame_to_tensor(frame, self.device, padding, self.fp16)
+
+            def to_rgb(frame_tensor: torch.Tensor):
+                return (
+                    frame_tensor[0]
+                    .mul(255.0)
+                    .byte()
+                    .cpu()
+                    .numpy()
+                    .transpose(1, 2, 0)[:height, :width]
+                )
+
+            def write_frame(frame_rgb):
+                writer.write(cv2.cvtColor(frame_rgb, cv2.COLOR_RGB2BGR))
+
+            with torch.inference_mode():
+                lastframe = first_frame
+                I1 = to_tensor(first_frame)
+                pending = None
+
+                while True:
+                    if pending is not None:
+                        frame, pending = pending, None
+                    else:
+                        frame = next(reader, None)
+                        if frame is None:
+                            break
+
+                    I0 = I1
+                    I1 = to_tensor(frame)
+                    ssim = ssim_score(I0, I1)
+
+                    break_flag = False
+                    if ssim > _STATIC_SSIM:
+                        lookahead = next(reader, None)
+                        if lookahead is None:
+                            break_flag = True
+                            frame = lastframe
+                        else:
+                            frame = lookahead
+                            pending = lookahead
+                        I1 = self.model.inference(
+                            I0, to_tensor(frame), scale=self.scale
+                        )
+                        ssim = ssim_score(I0, I1)
+                        frame = to_rgb(I1)
+
+                    if ssim < _CUT_SSIM:
+                        mids = [I0] * (multi - 1)
+                    else:
+                        mids = make_inference(
+                            self.model, I0, I1, multi - 1, self.scale
+                        )
+
+                    write_frame(lastframe)
+                    for mid in mids:
+                        write_frame(to_rgb(mid))
+                    if pbar is not None:
+                        pbar.update(1)
+
+                    lastframe = frame
+                    if break_flag:
+                        break
+
+                write_frame(lastframe)
+                if pbar is not None:
+                    pbar.update(1)
+
+            completed = True
+        finally:
+            if writer is not None:
+                writer.release()
+            if pbar is not None:
+                pbar.close()
+            close = getattr(reader, "close", None)
+            if close is not None:
+                close()
+            if not completed:
+                working_path.unlink(missing_ok=True)
+
+        working_path.replace(output)
+
+        if merge_audio:
+            try:
+                _transfer_audio(video, output, temp_directory, ffmpeg)
+            except Exception as exc:
+                warnings.warn(
+                    f"audio transfer failed; {output} has no audio ({exc})",
+                    RuntimeWarning,
+                    stacklevel=2,
+                )
+        return output
+
 
 def interpolate_video(
     video: Tensor,
@@ -395,7 +768,7 @@ def interpolate_video(
     engine = RifeVideoInterpolator(
         model_dir=model_dir, scale=scale, fp16=fp16, device=device
     )
-    return engine.interpolate(
+    return engine.interpolate_in_tensor(
         video,
         exp,
         layout=layout,
