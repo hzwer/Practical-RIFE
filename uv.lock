@@ -568,7 +568,7 @@ wheels = [
 
 [[package]]
 name = "practical-rife-a6i"
-version = "0.1.4"
+version = "0.1.5"
 source = { editable = "." }
 dependencies = [
     { name = "moviepy" },
