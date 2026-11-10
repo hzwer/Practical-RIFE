@@ -175,10 +175,24 @@ if delegate and exp is not None:
     else:
         print("Will not merge audio because using fps flag!")
 
+    pbar = tqdm(
+        total=None,
+        unit="frame",
+        desc=output_path.name,
+    )
+
+    def progress(current: int, total: int):
+        if pbar.total != total:
+            pbar.total = total
+            pbar.refresh()
+        pbar.update(current - pbar.n)
+
     try:
         output_path = engine.interpolate_in_file(
-            Path(args.video), Path("./temp"), exp, output_path, ffmpeg_path,
+            Path(args.video), Path("./temp"), exp, output_path,
+            ffmpeg_path,
             fps=args.fps,
+            progress_fn=progress
         )
     except Exception as exc:
         print("Video interpolation failed: {}".format(exc), file=sys.stderr)
